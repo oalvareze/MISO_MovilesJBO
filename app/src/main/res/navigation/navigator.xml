@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigator"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.vinilos.view.splashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_albumListFragment"
+            app:destination="@id/albumListFragment"
+            app:popUpTo="@id/navigator"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumListFragment"
+        android:name="com.example.vinilos.view.albumlist.AlbumListFragment"
+        android:label="fragment_album_list"
+        tools:layout="@layout/fragment_album_list" />
+</navigation>
