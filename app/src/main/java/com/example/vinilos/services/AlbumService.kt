@@ -2,25 +2,54 @@ package com.example.vinilos.services
 
 import android.content.Context
 import android.util.Log
+import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.vinilos.model.Album
+import org.json.JSONArray
 
-class AlbumService constructor(context:Context) {
-    companion object{
-        const val BASE_URL="https://backvynils-job.herokuapp.com/";
-        var instance: AlbumService?=null;
-        fun getInstance(context: Context)=instance ?: synchronized(this) {
+class AlbumService constructor(context: Context) {
+
+    val instance: RequestQueue = Volley.newRequestQueue(context.applicationContext)
+
+    companion object {
+        const val BASE_URL = "https://backvynils-job.herokuapp.com/"
+        var instance: AlbumService? = null
+        fun getInstance(context: Context) = instance ?: synchronized(this) {
             instance ?: AlbumService(context).also {
                 instance = it
             }
         }
-    }
-    fun getAlbums(onComplete:(resp:List<Album>)->Unit,onError:(resp:List<Album>)->Unit){
-        val images= listOf<String>("https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/114/posts/34296/final_image/Final-image.jpg","https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/602f4731226337.5646928c3633f.jpg");
-        val list= mutableListOf<Album>()
-        Log.d("Entro","AQUIII")
-        for (i in 0 until 10){
 
-            list.add(Album(albumId = i, name = "Album${i}", description = "ca", releaseDate = "c", cover = if (i%2==0)images[0]else images[1], genre = "C", recordLabel = "r"));
+        fun getAlbumsRequest(path:String, responseListener: Response.Listener<JSONArray>,
+                             errorListener: Response.ErrorListener): JsonArrayRequest {
+            return JsonArrayRequest(Request.Method.GET, BASE_URL+path, null,
+                responseListener, errorListener)
+        }
+    }
+
+    fun getAlbums(onComplete: (resp: List<Album>) -> Unit, onError: (resp: List<Album>) -> Unit) {
+        val images = listOf<String>(
+            "https://cms-assets.tutsplus.com/cdn-cgi/image/width=850/uploads/users/114/posts/34296/final_image/Final-image.jpg",
+            "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/602f4731226337.5646928c3633f.jpg"
+        );
+        val list = mutableListOf<Album>()
+        Log.d("Entro", "AQUIII")
+        for (i in 0 until 10) {
+
+            list.add(
+                Album(
+                    id = i,
+                    name = "Album${i}",
+                    description = "ca",
+                    releaseDate = "c",
+                    cover = if (i % 2 == 0) images[0] else images[1],
+                    genre = "C",
+                    recordLabel = "r"
+                )
+            );
         }
         onComplete(list);
     }
