@@ -3,22 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigator"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/albumListFragment">
 
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.vinilos.view.splashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_albumListFragment"
-            app:destination="@id/albumListFragment"
-            app:popUpTo="@id/navigator"
-            app:popUpToInclusive="true" />
-    </fragment>
+
     <fragment
         android:id="@+id/albumListFragment"
         android:name="com.example.vinilos.view.albumlist.AlbumListFragment"
         android:label="fragment_album_list"
-        tools:layout="@layout/fragment_album_list" />
+        tools:layout="@layout/fragment_album_list" >
+        <action
+            android:id="@+id/action_albumListFragment_to_albumDetail"
+            app:destination="@id/albumDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumDetail"
+        android:name="com.example.vinilos.view.albumdetail.AlbumDetail"
+        android:label="fragment_album_detail"
+        tools:layout="@layout/fragment_album_detail" >
+        <action
+            android:id="@+id/action_albumDetail_to_albumListFragment"
+            app:exitAnim="@anim/nav_default_pop_enter_anim"
+            app:popUpTo="@id/albumListFragment" />
+    </fragment>
 </navigation>

@@ -14,7 +14,7 @@ class AlbumListViewModel(application: Application) :AndroidViewModel(application
     }
     private  fun refreshDataFromNetwork(){
         AlbumService.getInstance(getApplication()).getAlbums({
-            Log.d("Entro","===")
+
         _albums.postValue(it)
 
         },{

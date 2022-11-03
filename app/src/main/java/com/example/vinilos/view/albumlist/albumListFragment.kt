@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,7 +37,6 @@ class AlbumListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AlbumListViewModel
     private var viewModelAdapter: AlbumListAdapter? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -47,10 +48,13 @@ class AlbumListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding=FragmentAlbumListBinding.inflate(inflater, container,false)
         val view=binding.root
-        viewModelAdapter= AlbumListAdapter()
+        val navController=findNavController()
+        viewModelAdapter= AlbumListAdapter(navController)
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+
         // Inflate the layout for this fragment
         return view;
     }
