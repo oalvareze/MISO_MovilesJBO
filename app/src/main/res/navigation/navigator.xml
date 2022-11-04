@@ -24,5 +24,9 @@
             android:id="@+id/action_albumDetail_to_albumListFragment"
             app:exitAnim="@anim/nav_default_pop_enter_anim"
             app:popUpTo="@id/albumListFragment" />
+        <argument
+            android:name="albumId"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
 </navigation>

@@ -15,7 +15,7 @@ class AlbumListViewModel(application: Application) :AndroidViewModel(application
     private  fun refreshDataFromNetwork(){
         AlbumService.getInstance(getApplication()).getAlbums({
 
-        _albums.postValue(it)
+            _albums.postValue(it)
 
         },{
 
@@ -29,5 +29,4 @@ class AlbumListViewModel(application: Application) :AndroidViewModel(application
             }
             throw IllegalArgumentException("unable to construct view model")
         }
-    }
-}
+    }}

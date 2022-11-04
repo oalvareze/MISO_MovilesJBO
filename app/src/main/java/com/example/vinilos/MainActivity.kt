@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("Entro", "onCreate: "+navHostFragment.navController.graph)
 
         setupActionBarWithNavController(navController2, AppBarConfiguration(navController2.graph))
-
+      supportActionBar!!.title="Vinilos"
     }
     override fun onSupportNavigateUp(): Boolean {
         return navController2.navigateUp() || super.onSupportNavigateUp()
