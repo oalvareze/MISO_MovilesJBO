@@ -47,7 +47,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     //Libreria para cargar imagenes desde internet
     implementation 'com.github.bumptech.glide:glide:4.14.2'
+    implementation 'androidx.navigation:navigation-runtime-ktx:2.5.3'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    implementation 'com.android.volley:volley:1.2.1'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        val binding=ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController2=navHostFragment.navController
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController2, AppBarConfiguration(navController2.graph))
 
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController2.navigateUp() || super.onSupportNavigateUp()
     }}
