@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -17,7 +18,7 @@ import com.example.vinilos.R
 import com.example.vinilos.databinding.AlbumListItemBinding
 import com.example.vinilos.model.Album
 
-class AlbumListAdapter(private val navController: NavController): RecyclerView.Adapter<AlbumListAdapter.AlbumListViewHolder>() {
+class AlbumListAdapter(private val navController: NavController,val navDirections: AlbumListFragmentDirections.Companion): RecyclerView.Adapter<AlbumListAdapter.AlbumListViewHolder>() {
 
 
 
@@ -34,11 +35,12 @@ class AlbumListAdapter(private val navController: NavController): RecyclerView.A
             AlbumListViewHolder.LAYOUT,
             parent,
             false)
-
         val holder=AlbumListViewHolder(withDataBinding)
+
         holder.itemView.setOnClickListener(View.OnClickListener() {
-            navController.navigate(R.id.action_albumListFragment_to_albumDetail)
-        })
+                this.navController.navigate(navDirections.actionAlbumListFragmentToAlbumDetail(albums[holder.adapterPosition].albumId))
+
+            })
         return holder
     }
 

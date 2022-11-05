@@ -32,17 +32,13 @@ private const val ARG_PARAM2 = "param2"
  */
 class AlbumListFragment : Fragment() {
     // TODO: Rename and change types of parameters
-  private var _binding:FragmentAlbumListBinding?=null
+    private  var _binding:FragmentAlbumListBinding?=null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: AlbumListViewModel
     private var viewModelAdapter: AlbumListAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
 
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +48,8 @@ class AlbumListFragment : Fragment() {
         _binding=FragmentAlbumListBinding.inflate(inflater, container,false)
         val view=binding.root
         val navController=findNavController()
-        viewModelAdapter= AlbumListAdapter(navController)
+        val direction=AlbumListFragmentDirections
+        viewModelAdapter= AlbumListAdapter(navController,direction)
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
 
         // Inflate the layout for this fragment
