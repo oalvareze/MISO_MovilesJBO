@@ -29,17 +29,18 @@ class AlbumListViewModel(application: Application) : AndroidViewModel(applicatio
                     val listTrack = mutableListOf<Track>()
                     val listComment = mutableListOf<Comentario>()
                     for (i in 0 until response.length()) {
-                        Log.d("Cpnsulta", response.get(0).toString())
-                        Log.d("Longitud", response.length().toString())
-                        Log.d("Imagen", response.getJSONObject(i).get("cover").toString())
-                        Log.d("antes de consultar el track", "paso")
-                        Log.d("Tracks", response.getJSONObject(i).getJSONArray("tracks").toString())
                         val listTrack: List<Track> = getTrack(response.getJSONObject(i).getJSONArray("tracks"))
                         val listComments: List<Comentario> = getComments(response.getJSONObject(i).getJSONArray("comments"))
                         list.add(
                             Album(
-                                1, "prueba", response.getJSONObject(i).get("cover").toString(),
-                                "a,", "a", "lorem", "uno", listTrack,
+                                response.getJSONObject(i).get("id").toString().toInt(),
+                                response.getJSONObject(i).get("name").toString(),
+                                response.getJSONObject(i).get("cover").toString(),
+                                response.getJSONObject(i).get("releaseDate").toString(),
+                                response.getJSONObject(i).get("description").toString(),
+                                response.getJSONObject(i).get("genre").toString(),
+                                response.getJSONObject(i).get("recordLabel").toString(),
+                                listTrack,
                                 listComments
                             )
                         )

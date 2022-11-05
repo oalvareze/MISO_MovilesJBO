@@ -23,21 +23,28 @@ class AlbumDetailViewModel(application: Application, private val albumId: Int) :
     }
 
     private fun refreshDataFromNetwork() {
-        Log.d("Cpnsulta", "ENTRO refreshDataFromNetwork")
+        Log.d("Cpnsulta Detalle album", "ENTRO refreshDataFromNetwork")
         albumService = AlbumService(this.getApplication())
         albumService.instance.add(
-            AlbumService.getUniqueAlbumsRequest("albums",
+            AlbumService.getUniqueAlbumsRequest(
+                "albums/$albumId",
                 { response ->
-                    Log.d("Cpnsulta", response.get("id").toString())
+                    Log.d("Consulta", response.get("id").toString())
                     Log.d("Longitud", response.length().toString())
                     Log.d("Imagen", response.get("cover").toString())
-                    val listTrack: List<Track> = getTrack(response.getJSONArray("track"))
+                    val listTrack: List<Track> = getTrack(response.getJSONArray("tracks"))
                     val listComments: List<Comentario> = getComments(response.getJSONArray("comments"))
                     _album.postValue(
                         Album(
-                            1, "prueba", response.get("cover").toString(),
-                            "a,", "a", "lorem", "uno",
-                            listTrack, listComments
+                            response.get("id").toString().toInt(),
+                            response.get("name").toString(),
+                            response.get("cover").toString(),
+                            response.get("releaseDate").toString(),
+                            response.get("description").toString(),
+                            response.get("genre").toString(),
+                            response.get("recordLabel").toString(),
+                            listTrack,
+                            listComments
                         )
                     )
                 },
@@ -56,8 +63,8 @@ class AlbumDetailViewModel(application: Application, private val albumId: Int) :
         for (i in 0 until response.length()) {
             listTrack.add(
                 Track(
-                    response.getJSONObject(i).get("nombre").toString(),
-                    response.getJSONObject(i).get("duracion").toString()
+                    response.getJSONObject(i).get("name").toString(),
+                    response.getJSONObject(i).get("duration").toString()
                 )
             )
         }
