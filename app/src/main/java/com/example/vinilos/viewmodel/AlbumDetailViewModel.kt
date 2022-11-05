@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import com.example.vinilos.model.Album
 import com.example.vinilos.model.Comentario
 import com.example.vinilos.model.Track
+import com.example.vinilos.repostories.AlbumRepository
 import com.example.vinilos.services.AlbumService
 import org.json.JSONArray
 
@@ -15,40 +16,21 @@ class AlbumDetailViewModel(application: Application, private val albumId: Int) :
     private val _album = MutableLiveData<Album>()
     val album: LiveData<Album> get() = _album
 
-    lateinit var albumService: AlbumService
+    lateinit var albumRepository: AlbumRepository
 
     init {
         refreshDataFromNetwork()
     }
 
     private fun refreshDataFromNetwork() {
-        Log.d("Cpnsulta Detalle album", "ENTRO refreshDataFromNetwork")
-        albumService = AlbumService(this.getApplication())
-        albumService.instance.add(
-            AlbumService.getUniqueAlbumsRequest(
-                "albums/$albumId",
-                { response ->
-                    Log.d("Consulta", response.get("id").toString())
-                    Log.d("Longitud", response.length().toString())
-                    Log.d("Imagen", response.get("cover").toString())
-                    val listTrack: List<Track> = getTrack(response.getJSONArray("tracks"))
-                    val listComments: List<Comentario> = getComments(response.getJSONArray("comments"))
-                    _album.postValue(
-                        Album(
-                            response.get("id").toString().toInt(),
-                            response.get("name").toString(),
-                            response.get("cover").toString(),
-                            response.get("releaseDate").toString(),
-                            response.get("description").toString(),
-                            response.get("genre").toString(),
-                            response.get("recordLabel").toString(),
-                            listTrack,
-                            listComments
-                        )
-                    )
-                },
-                { Log.d("TAG", it.toString()) })
-        )
+        Log.d("Entro", "ENTRO refreshDataFromNetwork")
+        albumRepository = AlbumRepository(this.getApplication())
+        albumRepository.getUniqueAlbum("albums/${albumId}",{
+                                                            _album.postValue(it)
+
+        },{
+            Log.d("Entro", "ENTRO refreshDataFromNetwork")
+        })
 
 //        AlbumService.getUniqueAlbumsRequest(getApplication()).getAlbum(albumId = albumId, onComplete = {
 //
