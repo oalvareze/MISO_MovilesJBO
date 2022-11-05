@@ -7,14 +7,13 @@ import com.example.vinilos.model.Album
 import com.example.vinilos.model.Comentario
 import com.example.vinilos.model.Track
 import com.example.vinilos.services.AlbumService
-import com.example.vinilos.view.albumdetail.AlbumDetail
 import org.json.JSONArray
 
 class AlbumDetailViewModel(application: Application, private val albumId: Int) :
     AndroidViewModel(application) {
 
-    private val _album = MutableLiveData<Album>();
-    val album: LiveData<Album> get() = _album;
+    private val _album = MutableLiveData<Album>()
+    val album: LiveData<Album> get() = _album
 
     lateinit var albumService: AlbumService
 
