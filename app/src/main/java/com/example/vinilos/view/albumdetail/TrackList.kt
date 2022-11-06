@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentTrackListBinding
 import com.example.vinilos.model.Track
+import org.w3c.dom.Text
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -18,7 +21,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class TrackListFragment(val trackList: List<Track>) : Fragment() {
+class TrackListFragment(val trackList: List<Track>,private val description:String) : Fragment() {
     private var trackListAdapter: TrackListAdapter? = null
     private  var _binding: FragmentTrackListBinding?=null
     private val binding get() = _binding!!
@@ -32,6 +35,7 @@ class TrackListFragment(val trackList: List<Track>) : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         _binding= FragmentTrackListBinding.inflate(inflater,container,false)
         val view=binding.root
         trackListAdapter= TrackListAdapter()
@@ -49,6 +53,8 @@ class TrackListFragment(val trackList: List<Track>) : Fragment() {
             recyclerView.context,
             LinearLayoutManager.VERTICAL
         )
+        view.findViewById<TextView>(R.id.albumDescription).text=description
+        view.findViewById<TextView>(R.id.tracksMensaje).visibility= if(trackList.isEmpty()) View.VISIBLE else   View.GONE
         recyclerView.addItemDecoration(dividerItemDecoration)
             super.onViewCreated(view, savedInstanceState)
 

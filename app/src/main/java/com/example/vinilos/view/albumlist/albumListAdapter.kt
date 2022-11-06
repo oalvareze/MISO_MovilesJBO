@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -18,7 +20,7 @@ import com.example.vinilos.R
 import com.example.vinilos.databinding.AlbumListItemBinding
 import com.example.vinilos.model.Album
 
-class AlbumListAdapter(private val navController: NavController,val navDirections: AlbumListFragmentDirections.Companion): RecyclerView.Adapter<AlbumListAdapter.AlbumListViewHolder>() {
+class AlbumListAdapter(private val navController: NavController,val navDirections: AlbumListFragmentDirections.Companion): RecyclerView.Adapter<AlbumListAdapter.AlbumListViewHolder>()  {
 
 
 
@@ -62,6 +64,5 @@ class AlbumListAdapter(private val navController: NavController,val navDirection
     override fun getItemCount(): Int {
         return albums.size
     }
-
 
 }

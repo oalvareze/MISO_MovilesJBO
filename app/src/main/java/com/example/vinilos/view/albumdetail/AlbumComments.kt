@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,6 +49,7 @@ class AlbumCommentsFragment(private val comments:List<Comentario>) : Fragment() 
         _binding= FragmentAlbumCommentsBinding.inflate(inflater,container,false)
         val view=binding.root
         commentAdapter= AlbumCommentAdapter()
+        view.findViewById<TextView>(R.id.mensajeComentarios).visibility= if(comments.isEmpty()) View.VISIBLE else   View.GONE
         // Inflate the layout for this fragment
         return view
     }

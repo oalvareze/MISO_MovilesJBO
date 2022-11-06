@@ -6,22 +6,39 @@ import com.android.volley.VolleyError
 import com.example.vinilos.model.Album
 import com.example.vinilos.repostories.AlbumRepository
 
-class AlbumListViewModel(application: Application) : AndroidViewModel(application) {
+class AlbumListViewModel(application: Application,var albumRepository: AlbumRepository) : AndroidViewModel(application) {
     private val _albums = MutableLiveData<List<Album>>();
-    val albums: LiveData<List<Album>> get() = _albums;
 
-    lateinit var albumRepository: AlbumRepository
+    private val _albumsFiltered = MutableLiveData<List<Album>>();
+    val albumsFiltered: LiveData<List<Album>> get() = _albumsFiltered;
+    private val _genres = MutableLiveData<List<String>>()
+    val genres:MutableLiveData<List<String>> get()=_genres
 
+    private val _loading=MutableLiveData<Boolean>()
+    val loading:MutableLiveData<Boolean>get()=_loading
     init {
+        print("AQUI")
         refreshDataFromNetwork()
+        _loading.value=true;
     }
 
+    fun loadAlbum(it:List<Album>){
+
+
+
+
+
+
+
+    }
     private fun refreshDataFromNetwork() {
-        albumRepository = AlbumRepository(this.getApplication())
         albumRepository.getAlbums({
+            _albumsFiltered.postValue(it).run {
+            fillGenres()
+        }
             _albums.postValue(it)
         }, {
-            VolleyError("No se ha encontrado informacion")
+
         })
 
 //        AlbumService.getInstance(getApplication()).getAlbums({
@@ -33,11 +50,51 @@ class AlbumListViewModel(application: Application) : AndroidViewModel(applicatio
 //        }) //implementar error
     }
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    fun getAlbumFiltered(genre: String) {
+        Log.d("Entro", "Albumes" + _albums.value.toString())
+        if (genre == "Generos") {
+            if(_albums.value!=null) {
+                _albumsFiltered.postValue(_albums.value)
+            }
+        } else {
+            var filterAlbums = mutableListOf<Album>()
+            for (album in _albums.value!!) {
+                if (genre == album.genre) {
+                    filterAlbums.add(album)
+                    Log.d("Entro", "Filtro" + album.genre + "Album" + album.name)
+                }
+            }
+            _albumsFiltered.postValue(filterAlbums)
+            Log.d("Entro", "Filtro" + filterAlbums.toString())
+        }
+    }
+
+    fun fillGenres() {
+
+        var genresSet = mutableSetOf<String>()
+        genresSet.add("Generos")
+        if(_albumsFiltered.value!=null){
+
+        if (_albums.value == null) {
+            for (album in _albumsFiltered.value!!) {
+                genresSet.add(album.genre)
+            }
+        } else {
+
+            for (album in _albums.value!!) {
+                genresSet.add(album.genre)
+            }
+        }}
+        _genres.postValue(genresSet.toList())
+
+        _loading.value=false
+    }
+
+    class Factory(val app: Application,val albumRepository: AlbumRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(AlbumListViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumListViewModel(app) as T
+                return AlbumListViewModel(app,albumRepository) as T
             }
             throw IllegalArgumentException("unable to construct view model")
         }

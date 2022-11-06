@@ -27,12 +27,8 @@ class AlbumDetailViewModel(application: Application, private val albumId: Int) :
             Log.d("Entro", "ENTRO refreshDataFromNetwork")
         })
 
-//        AlbumService.getUniqueAlbumsRequest(getApplication()).getAlbum(albumId = albumId, onComplete = {
-//
-//            _album.postValue(it)
-//
-//        }) //implementar error
     }
+
 
     class Factory(val app: Application, private val albumId: Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

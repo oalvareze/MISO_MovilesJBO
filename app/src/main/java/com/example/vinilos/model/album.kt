@@ -12,5 +12,6 @@ data class Album(      val albumId:Int,
                        val genre:String,
                        val recordLabel:String,
                        val tracks:List<Track>,
-                       val comentarios:List<Comentario>
+                       val comentarios:List<Comentario>,
+                       val artist:String,
                        ):Parcelable
