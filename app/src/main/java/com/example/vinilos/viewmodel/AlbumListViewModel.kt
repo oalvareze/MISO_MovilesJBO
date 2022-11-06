@@ -1,15 +1,10 @@
 package com.example.vinilos.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
-import com.android.volley.Response
+import com.android.volley.VolleyError
 import com.example.vinilos.model.Album
-import com.example.vinilos.model.Comentario
-import com.example.vinilos.model.Track
 import com.example.vinilos.repostories.AlbumRepository
-import com.example.vinilos.services.AlbumService
-import org.json.JSONArray
 
 class AlbumListViewModel(application: Application) : AndroidViewModel(application) {
     private val _albums = MutableLiveData<List<Album>>();
@@ -22,17 +17,12 @@ class AlbumListViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private fun refreshDataFromNetwork() {
-        albumRepository= AlbumRepository(this.getApplication())
+        albumRepository = AlbumRepository(this.getApplication())
         albumRepository.getAlbums({
-
-
-                                  _albums.postValue(it)
-        },{
-
-
+            _albums.postValue(it)
+        }, {
+            VolleyError("No se ha encontrado informacion")
         })
-
-
 
 //        AlbumService.getInstance(getApplication()).getAlbums({
 //            Log.d("Entro", "===")
@@ -42,8 +32,6 @@ class AlbumListViewModel(application: Application) : AndroidViewModel(applicatio
 //
 //        }) //implementar error
     }
-
-
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
