@@ -24,13 +24,33 @@ class AlbumListViewModel(application: Application,var albumRepository: AlbumRepo
     init {
         print("AQUI")
         refreshDataFromNetwork()
-       // _loading.value=true;
+        _loading.value=true;
     }
 
+    fun loadAlbum(it:List<Album>){
+
+
+
+
+
+
+
+    }
     private fun refreshDataFromNetwork() {
 
 
-        _albumsFiltered.value= albumRepository.getAlbums()
+        println("ENTROOOO")
+        albumRepository.getAlbums({
+
+            _albumsFiltered.postValue(it).run {
+            fillGenres()
+        }
+            _albums.postValue(it)
+        }, {
+
+
+        })
+
 
 
 //        AlbumService.getInstance(getApplication()).getAlbums({
@@ -67,7 +87,6 @@ class AlbumListViewModel(application: Application,var albumRepository: AlbumRepo
         genresSet.add("Generos")
         if(_albumsFiltered.value!=null){
 
-            Log.d("Entro","YO")
         if (_albums.value == null) {
             for (album in _albumsFiltered.value!!) {
                 genresSet.add(album.genre)

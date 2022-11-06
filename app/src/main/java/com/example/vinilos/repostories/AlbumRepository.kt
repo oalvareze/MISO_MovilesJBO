@@ -13,12 +13,12 @@ class AlbumRepository(private val application: Application) {
     init {
         print("ENTRo")
     }
-    fun getAlbums():List<Album> {
-        val list = mutableListOf<Album>()
-       val albumService=AlbumService.getInstance(application)
+    fun getAlbums(callback: (List<Album>) -> Unit, onError: (VolleyError) -> Unit) {
+
+        val albumService=AlbumService.getInstance(application)
         albumService.instance.add(albumService.getAlbumsRequest("albums", {
 
-
+            val list = mutableListOf<Album>()
 
             for (i in 0 until it.length()) {
 
@@ -33,13 +33,8 @@ class AlbumRepository(private val application: Application) {
                     )
                 )
             }
-
-        },{
-            throw  it
-        }))
-        return  list
-
-
+            callback(list)
+        }, onError))
     }
     fun getUniqueAlbum(url: String  ,callback: (Album) -> Unit, onError: (VolleyError) -> Unit){
         val albumService=AlbumService.getInstance(application)

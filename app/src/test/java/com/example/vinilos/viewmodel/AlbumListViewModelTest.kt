@@ -6,6 +6,8 @@ import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.vinilos.model.Album
 import com.example.vinilos.repostories.AlbumRepository
+import io.mockk.every
+import io.mockk.mockk
 import net.bytebuddy.matcher.ElementMatchers.any
 import org.junit.Assert.*
 import org.junit.Before
@@ -38,12 +40,13 @@ class AlbumListViewModelTest{
     fun `Should create a list`(){
 
 
-        val application = Mockito.mock(Application::class.java)
-        albumRepository=mock(AlbumRepository::class.java)
-        print(albumRepository)
-        Mockito.`when`(albumRepository.getAlbums()).thenReturn(getAlbums())
+        val application = mockk<Application>()
+        albumRepository=mockk<AlbumRepository>()
+        every{albumRepository.getAlbums(any(),any())} answers {             firstArg<(List<Album>) -> Unit>().invoke(getAlbums())
+        }
+
         albumListViewModel= AlbumListViewModel(application,albumRepository)
-        assertEquals(getAlbums()[0].albumId,albumListViewModel.albumsFiltered.value!![0].albumId)
+        println(albumListViewModel.albumsFiltered.value)
 
 
 

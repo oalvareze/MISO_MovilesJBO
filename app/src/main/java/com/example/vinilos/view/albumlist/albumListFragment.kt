@@ -54,7 +54,7 @@ class AlbumListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title="Vinilos"
         _binding=FragmentAlbumListBinding.inflate(inflater, container,false)
         val view=binding.root
         val navController=findNavController()
