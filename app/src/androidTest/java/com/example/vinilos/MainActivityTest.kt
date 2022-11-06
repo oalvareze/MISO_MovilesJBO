@@ -33,13 +33,14 @@ class MainActivityTest {
     fun `validate filter for gender`() {
         val gender = "Salsa"
         val album = "Buscando América"
+        Thread.sleep(800)
         onView(withId(R.id.genresSpinner))
             .perform(click())
-        Thread.sleep(500)
+        Thread.sleep(800)
         onView(withText(gender)).perform(click())
         onView(withText(album)).check(matches(isDisplayed()))
         onView(withText(album)).perform(click())
-        Thread.sleep(500)
+        Thread.sleep(800)
         onView(withText(album)).check(matches(isDisplayed()))
     }
     @Test
