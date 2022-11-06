@@ -40,7 +40,7 @@ class MainActivityTest {
         onView(withText(gender)).perform(click())
         onView(withText(album)).check(matches(isDisplayed()))
         onView(withText(album)).perform(click())
-        Thread.sleep(500)
+        Thread.sleep(800)
         onView(withText(album)).check(matches(isDisplayed()))
     }
     @Test
