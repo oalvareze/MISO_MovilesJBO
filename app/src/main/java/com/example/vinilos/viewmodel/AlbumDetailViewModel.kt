@@ -33,39 +33,8 @@ class AlbumDetailViewModel(application: Application, private val albumId: Int) :
             Log.d("Entro", "ENTRO refreshDataFromNetwork")
         })
 
-//        AlbumService.getUniqueAlbumsRequest(getApplication()).getAlbum(albumId = albumId, onComplete = {
-//
-//            _album.postValue(it)
-//
-//        }) //implementar error
     }
 
-    private fun getTrack(response: JSONArray): List<Track> {
-        val listTrack = mutableListOf<Track>()
-        for (i in 0 until response.length()) {
-            listTrack.add(
-                Track(
-                    response.getJSONObject(i).get("name").toString(),
-                    response.getJSONObject(i).get("duration").toString()
-                )
-            )
-        }
-        return listTrack
-    }
-
-    private fun getComments(response: JSONArray): List<Comentario> {
-        val listComentario = mutableListOf<Comentario>()
-        for (i in 0 until response.length()) {
-            listComentario.add(
-                Comentario(
-                    response.getJSONObject(i).get("description").toString(),
-                    response.getJSONObject(i).get("rating").toString(),
-                    response.getJSONObject(i).get("id").toString().toInt()
-                )
-            )
-        }
-        return listComentario
-    }
 
     class Factory(val app: Application, private val albumId: Int) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

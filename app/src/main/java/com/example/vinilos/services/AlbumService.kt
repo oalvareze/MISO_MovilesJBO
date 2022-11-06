@@ -33,14 +33,14 @@ class AlbumService constructor(context: Context) {
 
         fun getAlbumsRequest(path:String, responseListener: Response.Listener<JSONArray>,
                          errorListener: Response.ErrorListener): JsonArrayRequest {
-        Log.d("Entro","c")
+
         return JsonArrayRequest(Request.Method.GET, BASE_URL+path, null,
             responseListener, errorListener)
     }
 
     fun getUniqueAlbumsRequest(path:String, responseListener: Response.Listener<JSONObject>,
                                errorListener: Response.ErrorListener): JsonObjectRequest {
-        Log.d("Entro",BASE_URL+path)
+
         return JsonObjectRequest(Request.Method.GET, BASE_URL+path, null,
             responseListener, errorListener)
     }

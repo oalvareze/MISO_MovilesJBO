@@ -16,8 +16,7 @@ class AlbumRepository(private val application: Application) {
         albumService.instance.add(albumService.getAlbumsRequest("albums", {
 
             val list = mutableListOf<Album>()
-            val listTrack = mutableListOf<Track>()
-            val listComment = mutableListOf<Comentario>()
+
             for (i in 0 until it.length()) {
 
                 val listTrack: List<Track> = emptyList()
@@ -27,7 +26,7 @@ class AlbumRepository(private val application: Application) {
                     Album(
                         Integer.parseInt(it.getJSONObject(i).get("id").toString()), it.getJSONObject(i).get("name").toString(), it.getJSONObject(i).get("cover").toString(),
                         "a,", "a", it.getJSONObject(i).get("genre").toString(), "uno", listTrack,
-                        listComments
+                        listComments,"Artista"
                     )
                 )
             }
@@ -36,21 +35,23 @@ class AlbumRepository(private val application: Application) {
     }
     fun getUniqueAlbum(url: String  ,callback: (Album) -> Unit, onError: (VolleyError) -> Unit){
         val albumService=AlbumService.getInstance(application)
-        Log.d("Entro",url)
+
      albumService.instance.add(albumService.getUniqueAlbumsRequest(url,{
-         Log.d("Entro", "ENTRO2 refreshDataFromNetwork")
+
             val listTrack: List<Track> = getTrack(it.getJSONArray("tracks"))
             val listComments: List<Comentario> = getComments(it.getJSONArray("comments"))
-                    callback(Album(
+            val artist=getArtist(it.getJSONArray("performers"))
+
+         callback(Album(
                 it.get("id").toString().toInt(),
                 it.get("name").toString(),
                 it.get("cover").toString(),
-                it.get("releaseDate").toString(),
+                it.get("releaseDate").toString().split("T").toTypedArray().get(0),
                 it.get("description").toString(),
                it.get("genre").toString(),
                 it.get("recordLabel").toString(),
                 listTrack,
-                listComments
+                listComments,artist
             ))},onError))
     }
 
@@ -66,7 +67,13 @@ class AlbumRepository(private val application: Application) {
         }
         return listTrack
     }
-
+    private fun getArtist(response: JSONArray):String{
+        if(response.length()>0){
+            return  response.getJSONObject(0).get("name").toString()
+        }
+        else
+            return "Artista"
+    }
     private fun getComments(response: JSONArray): List<Comentario> {
         val listComentario = mutableListOf<Comentario>()
         for (i in 0 until response.length()) {

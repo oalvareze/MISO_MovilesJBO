@@ -43,9 +43,10 @@ class AlbumDetail : Fragment() {
     }
     fun updateUi(view:View,album: Album){
 
-        Log.d("Entro", "AYOOO")
-        view.findViewById<TextView>(R.id.albumDetailTitle).text = album.name
 
+        view.findViewById<TextView>(R.id.albumDetailTitle).text = album.name
+        view.findViewById<TextView>(R.id.albumDetailArtist).text=album.artist
+        view.findViewById<TextView>(R.id.albumDate).text=album.releaseDate
         Glide.with(view.context,).load(album.cover).centerCrop().into(view.findViewById<ImageView>(R.id.albumDetailCover))
     }
 
@@ -55,7 +56,7 @@ class AlbumDetail : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory((activity as AppCompatActivity?)!!.application,args.albumId))[AlbumDetailViewModel::class.java]
-        var tracks :List<Track> = emptyList()
+
 
 
         viewModel.album.observe(viewLifecycleOwner, Observer<Album> {
@@ -65,7 +66,7 @@ class AlbumDetail : Fragment() {
                 tabLayout= view.findViewById(R.id.tabLayout)
                 viewPager=view.findViewById(R.id.pageViewer)
 
-                viewPager.adapter= AlbumDetailPageAdapter((activity as AppCompatActivity?)!!,it.tracks,it.comentarios)
+                viewPager.adapter= AlbumDetailPageAdapter((activity as AppCompatActivity?)!!,it.tracks,it.comentarios,it.description)
 
                 TabLayoutMediator(tabLayout,viewPager){
                         tab,index->

@@ -13,25 +13,34 @@ import org.json.JSONArray
 
 class AlbumListViewModel(application: Application) : AndroidViewModel(application) {
     private val _albums = MutableLiveData<List<Album>>();
-    val albums: LiveData<List<Album>> get() = _albums;
 
+    private val _albumsFiltered = MutableLiveData<List<Album>>();
+    val albumsFiltered: LiveData<List<Album>> get() = _albumsFiltered;
+    private val _genres = MutableLiveData<List<String>>()
+    val genres:MutableLiveData<List<String>> get()=_genres
     lateinit var albumRepository: AlbumRepository
-
+    private val _loading=MutableLiveData<Boolean>()
+    val loading:MutableLiveData<Boolean>get()=_loading
     init {
         refreshDataFromNetwork()
+        _loading.value=true;
     }
 
     private fun refreshDataFromNetwork() {
-        albumRepository= AlbumRepository(this.getApplication())
+        albumRepository = AlbumRepository(this.getApplication())
         albumRepository.getAlbums({
 
+            _albumsFiltered.postValue(it).run {
+               fillGenres()
+            }
+            _albums.postValue(it)
 
-                                  _albums.postValue(it)
-        },{
+
+
+        }, {
 
 
         })
-
 
 
 //        AlbumService.getInstance(getApplication()).getAlbums({
@@ -43,7 +52,46 @@ class AlbumListViewModel(application: Application) : AndroidViewModel(applicatio
 //        }) //implementar error
     }
 
+    fun getAlbumFiltered(genre: String) {
+        Log.d("Entro", "Albumes" + _albums.value.toString())
+        if (genre == "Generos") {
+            if(_albums.value!=null) {
+                _albumsFiltered.postValue(_albums.value)
+            }
+        } else {
+            var filterAlbums = mutableListOf<Album>()
+            for (album in _albums.value!!) {
+                if (genre == album.genre) {
+                    filterAlbums.add(album)
+                    Log.d("Entro", "Filtro" + album.genre + "Album" + album.name)
+                }
+            }
+            _albumsFiltered.postValue(filterAlbums)
+            Log.d("Entro", "Filtro" + filterAlbums.toString())
+        }
+    }
 
+    fun fillGenres() {
+
+        var genresSet = mutableSetOf<String>()
+        genresSet.add("Generos")
+        if(_albumsFiltered.value!=null){
+
+            Log.d("Entro","YO")
+        if (_albums.value == null) {
+            for (album in _albumsFiltered.value!!) {
+                genresSet.add(album.genre)
+            }
+        } else {
+
+            for (album in _albums.value!!) {
+                genresSet.add(album.genre)
+            }
+        }}
+        _genres.postValue(genresSet.toList())
+
+        _loading.value=false
+    }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
