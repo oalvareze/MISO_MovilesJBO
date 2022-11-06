@@ -22,48 +22,22 @@ class AlbumListViewModel(application: Application,var albumRepository: AlbumRepo
     private val _loading=MutableLiveData<Boolean>()
     val loading:MutableLiveData<Boolean>get()=_loading
     init {
-        print("AQUI")
         refreshDataFromNetwork()
         _loading.value=true;
     }
 
-    fun loadAlbum(it:List<Album>){
 
-
-
-
-
-
-
-    }
     private fun refreshDataFromNetwork() {
-
-
-        println("ENTROOOO")
         albumRepository.getAlbums({
-
-            _albumsFiltered.postValue(it).run {
-            fillGenres()
-        }
+            _albumsFiltered.postValue(it)
             _albums.postValue(it)
         }, {
-
-
+            print("entro")
         })
-
-
-
-//        AlbumService.getInstance(getApplication()).getAlbums({
-//            Log.d("Entro", "===")
-//            _albums.postValue(it)
-//
-//        }, {
-//
-//        }) //implementar error
     }
 
     fun getAlbumFiltered(genre: String) {
-        Log.d("Entro", "Albumes" + _albums.value.toString())
+
         if (genre == "Generos") {
             if(_albums.value!=null) {
                 _albumsFiltered.postValue(_albums.value)
@@ -73,38 +47,32 @@ class AlbumListViewModel(application: Application,var albumRepository: AlbumRepo
             for (album in _albums.value!!) {
                 if (genre == album.genre) {
                     filterAlbums.add(album)
-                    Log.d("Entro", "Filtro" + album.genre + "Album" + album.name)
+
                 }
             }
             _albumsFiltered.postValue(filterAlbums)
-            Log.d("Entro", "Filtro" + filterAlbums.toString())
+
         }
     }
 
     fun fillGenres() {
-
         var genresSet = mutableSetOf<String>()
         genresSet.add("Generos")
-        if(_albumsFiltered.value!=null){
-
-        if (_albums.value == null) {
+        if(_albumsFiltered.value!=null) {
             for (album in _albumsFiltered.value!!) {
                 genresSet.add(album.genre)
             }
-        } else {
-
-            for (album in _albums.value!!) {
-                genresSet.add(album.genre)
-            }
-        }}
+        }
         _genres.postValue(genresSet.toList())
-
         _loading.value=false
     }
 
     class Factory(val app: Application,val albumRepository: AlbumRepository) : ViewModelProvider.Factory {
+
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
+
             if (modelClass.isAssignableFrom(AlbumListViewModel::class.java)) {
+
                 @Suppress("UNCHECKED_CAST")
                 return AlbumListViewModel(app,albumRepository) as T
             }
