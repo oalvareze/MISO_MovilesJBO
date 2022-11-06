@@ -16,7 +16,7 @@ import org.json.JSONObject
 
 class AlbumService constructor(context: Context) {
 
-    val instance: RequestQueue = Volley.newRequestQueue(context.applicationContext)
+    var instance: RequestQueue = Volley.newRequestQueue(context.applicationContext)
 
     companion object {
         const val BASE_URL = "https://backvynils-job.herokuapp.com/"

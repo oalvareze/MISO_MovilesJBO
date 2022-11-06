@@ -1,9 +1,7 @@
 package com.example.vinilos.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
+
 data class Album(      val albumId:Int,
                        val name:String,
                        val cover:String,
@@ -14,4 +12,4 @@ data class Album(      val albumId:Int,
                        val tracks:List<Track>,
                        val comentarios:List<Comentario>,
                        val artist:String,
-                       ):Parcelable
+                       )

@@ -22,6 +22,7 @@ import com.example.vinilos.databinding.FragmentAlbumListBinding
 import com.example.vinilos.databinding.FragmentTrackListBinding
 import com.example.vinilos.model.Album
 import com.example.vinilos.model.Track
+import com.example.vinilos.repostories.AlbumRepository
 import com.example.vinilos.view.albumlist.AlbumListAdapter
 import com.example.vinilos.viewmodel.AlbumDetailViewModel
 import com.google.android.material.tabs.TabLayout
@@ -55,7 +56,7 @@ class AlbumDetail : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory((activity as AppCompatActivity?)!!.application,args.albumId))[AlbumDetailViewModel::class.java]
+        viewModel = ViewModelProvider(this, AlbumDetailViewModel.Factory((activity as AppCompatActivity?)!!.application,args.albumId, AlbumRepository((activity as AppCompatActivity?)!!.application)))[AlbumDetailViewModel::class.java]
 
 
 
