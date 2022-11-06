@@ -47,14 +47,16 @@ class AlbumDetailViewModelTest() {
                 )
             )
         }
-
+        var factory=AlbumDetailViewModel.Factory(application,2,albumRepository)
         var albumDetailViewModel =AlbumDetailViewModel(application,2,albumRepository)
 
         assertEquals(albumDetailViewModel.album.value!!.name, "album")
-
+        assertEquals(albumDetailViewModel.album.value!!.comentarios.size,1)
+        assertEquals(albumDetailViewModel.album.value!!.tracks.size,1)
 
     }
-    fun `There sh2ould have an album with comments and tracks`() {
+    @Test
+    fun `Album value must be null`() {
         val application = mockk<Application>()
         albumRepository = mockk<AlbumRepository>()
         every { albumRepository.getUniqueAlbum(any(), any(), any()) } answers {
