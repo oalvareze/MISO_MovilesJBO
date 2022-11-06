@@ -10,6 +10,9 @@ import com.example.vinilos.services.AlbumService
 import org.json.JSONArray
 
 class AlbumRepository(private val application: Application) {
+    init {
+        print("ENTRo")
+    }
     fun getAlbums(callback: (List<Album>) -> Unit, onError: (VolleyError) -> Unit) {
 
         val albumService=AlbumService.getInstance(application)

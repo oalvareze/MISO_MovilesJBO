@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentAlbumListBinding
 import com.example.vinilos.model.Album
+import com.example.vinilos.repostories.AlbumRepository
 
 import com.example.vinilos.viewmodel.AlbumListViewModel
 
@@ -53,7 +54,7 @@ class AlbumListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title="Vinilos"
         _binding=FragmentAlbumListBinding.inflate(inflater, container,false)
         val view=binding.root
         val navController=findNavController()
@@ -71,7 +72,7 @@ class AlbumListFragment : Fragment() {
         recyclerView = binding.albumListRV
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
-        viewModel = ViewModelProvider(this, AlbumListViewModel.Factory((activity as AppCompatActivity?)!!.application)).get(AlbumListViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumListViewModel.Factory((activity as AppCompatActivity?)!!.application,AlbumRepository((activity as AppCompatActivity?)!!.application))).get(AlbumListViewModel::class.java)
         progressBar=view.findViewById<ProgressBar>(R.id.progressBar)
 
         viewModel.albumsFiltered.observe(viewLifecycleOwner,Observer<List<Album>>{
