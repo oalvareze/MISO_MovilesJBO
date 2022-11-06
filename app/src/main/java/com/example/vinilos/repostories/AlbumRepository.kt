@@ -10,12 +10,15 @@ import com.example.vinilos.services.AlbumService
 import org.json.JSONArray
 
 class AlbumRepository(private val application: Application) {
-    fun getAlbums(callback: (List<Album>) -> Unit, onError: (VolleyError) -> Unit) {
-
-        val albumService=AlbumService.getInstance(application)
+    init {
+        print("ENTRo")
+    }
+    fun getAlbums():List<Album> {
+        val list = mutableListOf<Album>()
+       val albumService=AlbumService.getInstance(application)
         albumService.instance.add(albumService.getAlbumsRequest("albums", {
 
-            val list = mutableListOf<Album>()
+
 
             for (i in 0 until it.length()) {
 
@@ -30,8 +33,13 @@ class AlbumRepository(private val application: Application) {
                     )
                 )
             }
-            callback(list)
-        }, onError))
+
+        },{
+            throw  it
+        }))
+        return  list
+
+
     }
     fun getUniqueAlbum(url: String  ,callback: (Album) -> Unit, onError: (VolleyError) -> Unit){
         val albumService=AlbumService.getInstance(application)

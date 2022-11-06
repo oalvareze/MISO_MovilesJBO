@@ -11,36 +11,26 @@ import com.example.vinilos.repostories.AlbumRepository
 import com.example.vinilos.services.AlbumService
 import org.json.JSONArray
 
-class AlbumListViewModel(application: Application) : AndroidViewModel(application) {
+class AlbumListViewModel(application: Application,var albumRepository: AlbumRepository) : AndroidViewModel(application) {
     private val _albums = MutableLiveData<List<Album>>();
 
     private val _albumsFiltered = MutableLiveData<List<Album>>();
     val albumsFiltered: LiveData<List<Album>> get() = _albumsFiltered;
     private val _genres = MutableLiveData<List<String>>()
     val genres:MutableLiveData<List<String>> get()=_genres
-    lateinit var albumRepository: AlbumRepository
+
     private val _loading=MutableLiveData<Boolean>()
     val loading:MutableLiveData<Boolean>get()=_loading
     init {
+        print("AQUI")
         refreshDataFromNetwork()
-        _loading.value=true;
+       // _loading.value=true;
     }
 
     private fun refreshDataFromNetwork() {
-        albumRepository = AlbumRepository(this.getApplication())
-        albumRepository.getAlbums({
-
-            _albumsFiltered.postValue(it).run {
-               fillGenres()
-            }
-            _albums.postValue(it)
 
 
-
-        }, {
-
-
-        })
+        _albumsFiltered.value= albumRepository.getAlbums()
 
 
 //        AlbumService.getInstance(getApplication()).getAlbums({
@@ -93,11 +83,11 @@ class AlbumListViewModel(application: Application) : AndroidViewModel(applicatio
         _loading.value=false
     }
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    class Factory(val app: Application,val albumRepository: AlbumRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(AlbumListViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return AlbumListViewModel(app) as T
+                return AlbumListViewModel(app,albumRepository) as T
             }
             throw IllegalArgumentException("unable to construct view model")
         }
