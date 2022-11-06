@@ -2,7 +2,6 @@ package com.example.vinilos.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.android.volley.VolleyError
 import com.example.vinilos.model.Album
 import com.example.vinilos.repostories.AlbumRepository
 
@@ -51,7 +50,6 @@ class AlbumListViewModel(application: Application,var albumRepository: AlbumRepo
     }
 
     fun getAlbumFiltered(genre: String) {
-        Log.d("Entro", "Albumes" + _albums.value.toString())
         if (genre == "Generos") {
             if(_albums.value!=null) {
                 _albumsFiltered.postValue(_albums.value)
@@ -61,11 +59,9 @@ class AlbumListViewModel(application: Application,var albumRepository: AlbumRepo
             for (album in _albums.value!!) {
                 if (genre == album.genre) {
                     filterAlbums.add(album)
-                    Log.d("Entro", "Filtro" + album.genre + "Album" + album.name)
                 }
             }
             _albumsFiltered.postValue(filterAlbums)
-            Log.d("Entro", "Filtro" + filterAlbums.toString())
         }
     }
 
