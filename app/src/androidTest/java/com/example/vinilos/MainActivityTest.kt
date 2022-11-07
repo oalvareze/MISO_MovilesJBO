@@ -49,7 +49,7 @@ class MainActivityTest {
         val album = "Buscando América"
 
 
-        Thread.sleep(500)
+        Thread.sleep(800)
         onView(withText(album)).check(matches(isDisplayed()))
         onView(withText(album)).perform(click())
         Thread.sleep(500)
@@ -72,7 +72,7 @@ class MainActivityTest {
         val album = "Buscando América"
 
 
-        Thread.sleep(500)
+        Thread.sleep(1000)
         onView(withText(album)).check(matches(isDisplayed()))
         onView(withText(album)).perform(click())
         Thread.sleep(500)
