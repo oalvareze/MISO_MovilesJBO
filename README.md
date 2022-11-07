@@ -5,7 +5,7 @@ Vinilos es una aplicación desarrollada en dos frentes, por un lado tenemos la p
 Vinilos, es una biblioteca de música, en donde podrá encontrar álbumes, canciones de esos albúmenes y comentarios realizados a las respectivas canciones.
 
 Para visualizar o trabajar en la aplicación podrá:
-- Para visualizar la app a través de la APK, podrá instalarla en su dispositivo Android, debe tener cuenta que deberá dar permisos para instalar aplicación de terceros.
+- Para visualizar la app a través de la APK, podrá instalarla en su dispositivo Android desde el archivo [/APK/app-debug.apk](/APK/app-debug.apk)  , debe tener cuenta que deberá dar permisos para instalar aplicación de terceros.
 - Para acceder al codigo fuente podrá clonar este repositorio, para esto debe tener en cuenta lo siguiente:
     1. Un espacio prudente en su disco de almacenamiento, debido a que son proyectos Android y pueden llegar hacer pesados.
     2. Descargar **Java Development Kit (JDK)**, de esta manera podrá no solo interactuar con la aplicación, sino trabajar en ella. Recomendamos descargar la versión **[JDK 11](https://openjdk.org/projects/jdk/11/)**,
