@@ -15,7 +15,7 @@ Para visualizar o trabajar en la aplicación podrá:
     4. Clone el proyecto.
     5. Importe el proyecto en Android Studio.
     6. Asegúrese de construir el proyecto, es decir, que todas las dependencias llamadas en el archivo `build.gradle` se encuentren descargadas.
-    7. Para ejecutar la aplicación solo bastará con ir a la clase `MainActivity`, clic derecho y clic en Run.
+    7. Para ejecutar la aplicación solo bastará con ir a la clase `SplashActivity`, clic derecho y clic en Run.
 
 **Nota**: Puede que la primera vez que se arranque el proyecto, presente lentitud o fallo, esto es debido a que el backend se encuentra desplegado en Heroku de forma gratuita, por políticas de Heroku los proyectos _free_ tienen 
 sus limitantes, una de esas es apagar la máquina después de cierto tiempo de inactividad.
