@@ -19,3 +19,4 @@ Para visualizar o trabajar en la aplicación podrá:
 
 **Nota**: Puede que la primera vez que se arranque el proyecto, presente lentitud o fallo, esto es debido a que el backend se encuentra desplegado en Heroku de forma gratuita, por políticas de Heroku los proyectos _free_ tienen 
 sus limitantes, una de esas es apagar la máquina después de cierto tiempo de inactividad.
+Antes de realizar las pruebas e2e es recomendable ejecutar la aplicacion para encender la maquina en heroku, para que no ocurra errores al ejecutar las pruebas
