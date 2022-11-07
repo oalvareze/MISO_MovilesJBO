@@ -30,7 +30,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun `validate filter for gender`() {
+    fun `validate_filter_for_gender`() {
         val gender = "Salsa"
         val album = "Buscando América"
         Thread.sleep(800)
@@ -44,7 +44,7 @@ class MainActivityTest {
         onView(withText(album)).check(matches(isDisplayed()))
     }
     @Test
-    fun `validate tracks`() {
+    fun `validate_tracks`() {
         val gender = "Salsa"
         val album = "Buscando América"
 
@@ -67,7 +67,7 @@ class MainActivityTest {
 
     }
     @Test
-    fun `validate comments`() {
+    fun `validate_comments`() {
         val gender = "Salsa"
         val album = "Buscando América"
 
