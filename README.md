@@ -24,10 +24,12 @@ Una vez importado el proyecto en Android studio
 ### E2E
 1. Click derecho en el paquete com.example.vinilos(AndroidTest)
 2. Click en run test como se muestra en la imagen
+<br>
 ![e2e](https://user-images.githubusercontent.com/98716277/200218870-75d074df-8c32-4d2f-a797-d7770e9648c9.png)
 ### Unitarias
 1. Click derecho en el paquete com.example.vinilos(test)
 2. Click en run test como se muestra en la imagen
+<br>
 ![unitarias](https://user-images.githubusercontent.com/98716277/200218979-f18018ca-8cb7-44c8-a2b7-cb62d01a7949.png)
 
 <br>
