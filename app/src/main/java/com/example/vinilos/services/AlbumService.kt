@@ -25,24 +25,31 @@ class AlbumService constructor(context: Context) {
             instance ?: AlbumService(context).also {
                 instance = it
             }
-       }
-
+        }
 
 
     }
 
-        fun getAlbumsRequest(path:String, responseListener: Response.Listener<JSONArray>,
-                         errorListener: Response.ErrorListener): JsonArrayRequest {
+    fun getAlbumsRequest(
+        path: String, responseListener: Response.Listener<JSONArray>,
+        errorListener: Response.ErrorListener
+    ): JsonArrayRequest {
 
-        return JsonArrayRequest(Request.Method.GET, BASE_URL+path, null,
-            responseListener, errorListener)
+        return JsonArrayRequest(
+            Request.Method.GET, BASE_URL + path, null,
+            responseListener, errorListener
+        )
     }
 
-    fun getUniqueAlbumsRequest(path:String, responseListener: Response.Listener<JSONObject>,
-                               errorListener: Response.ErrorListener): JsonObjectRequest {
+    fun getUniqueAlbumsRequest(
+        path: String, responseListener: Response.Listener<JSONObject>,
+        errorListener: Response.ErrorListener
+    ): JsonObjectRequest {
 
-        return JsonObjectRequest(Request.Method.GET, BASE_URL+path, null,
-            responseListener, errorListener)
+        return JsonObjectRequest(
+            Request.Method.GET, BASE_URL + path, null,
+            responseListener, errorListener
+        )
     }
 
 //    fun getAlbum(

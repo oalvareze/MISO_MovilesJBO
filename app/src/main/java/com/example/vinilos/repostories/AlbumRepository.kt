@@ -9,53 +9,70 @@ import com.example.vinilos.model.Track
 import com.example.vinilos.services.AlbumService
 import org.json.JSONArray
 
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
+
 class AlbumRepository(private val application: Application) {
+
     init {
-        print("ENTRo")
+        print("Inicia el consumo AlbumRepository")
     }
-    fun getAlbums(callback: (List<Album>) -> Unit, onError: (VolleyError) -> Unit) {
 
-        val albumService=AlbumService.getInstance(application)
+    suspend fun getAlbums() = suspendCoroutine<List<Album>>{ cont->
+        val albumService = AlbumService.getInstance(application)
         albumService.instance.add(albumService.getAlbumsRequest("albums", {
-
             val list = mutableListOf<Album>()
-
             for (i in 0 until it.length()) {
-
                 val listTrack: List<Track> = emptyList()
                 val listComments: List<Comentario> = emptyList()
 
                 list.add(
                     Album(
-                        Integer.parseInt(it.getJSONObject(i).get("id").toString()), it.getJSONObject(i).get("name").toString(), it.getJSONObject(i).get("cover").toString(),
-                        "a,", "a", it.getJSONObject(i).get("genre").toString(), "uno", listTrack,
-                        listComments,"Artista"
+                        Integer.parseInt(it.getJSONObject(i).get("id").toString()),
+                        it.getJSONObject(i).get("name").toString(),
+                        it.getJSONObject(i).get("cover").toString(),
+                        "a,",
+                        "a",
+                        it.getJSONObject(i).get("genre").toString(),
+                        "uno",
+                        listTrack,
+                        listComments,
+                        "Artista"
                     )
                 )
             }
-            callback(list)
-        }, onError))
+            cont.resume(list)
+        }, {
+            cont.resumeWithException(it)
+        }))
     }
-    fun getUniqueAlbum(url: String  ,callback: (Album) -> Unit, onError: (VolleyError) -> Unit){
-        val albumService=AlbumService.getInstance(application)
 
-     albumService.instance.add(albumService.getUniqueAlbumsRequest(url,{
+    suspend fun getUniqueAlbum(url: String) = suspendCoroutine<Album> { cont ->
+        val albumService = AlbumService.getInstance(application)
+
+        albumService.instance.add(albumService.getUniqueAlbumsRequest(url, {
 
             val listTrack: List<Track> = getTrack(it.getJSONArray("tracks"))
             val listComments: List<Comentario> = getComments(it.getJSONArray("comments"))
-            val artist=getArtist(it.getJSONArray("performers"))
+            val artist = getArtist(it.getJSONArray("performers"))
 
-         callback(Album(
-                it.get("id").toString().toInt(),
-                it.get("name").toString(),
-                it.get("cover").toString(),
-                it.get("releaseDate").toString().split("T").toTypedArray().get(0),
-                it.get("description").toString(),
-               it.get("genre").toString(),
-                it.get("recordLabel").toString(),
-                listTrack,
-                listComments,artist
-            ))},onError))
+            cont.resume(
+                Album(
+                    it.get("id").toString().toInt(),
+                    it.get("name").toString(),
+                    it.get("cover").toString(),
+                    it.get("releaseDate").toString().split("T").toTypedArray().get(0),
+                    it.get("description").toString(),
+                    it.get("genre").toString(),
+                    it.get("recordLabel").toString(),
+                    listTrack,
+                    listComments, artist
+                )
+            )
+        }, {
+            cont.resumeWithException(it)
+        }))
     }
 
     private fun getTrack(response: JSONArray): List<Track> {
@@ -70,13 +87,14 @@ class AlbumRepository(private val application: Application) {
         }
         return listTrack
     }
-    private fun getArtist(response: JSONArray):String{
-        if(response.length()>0){
-            return  response.getJSONObject(0).get("name").toString()
-        }
-        else
+
+    private fun getArtist(response: JSONArray): String {
+        if (response.length() > 0) {
+            return response.getJSONObject(0).get("name").toString()
+        } else
             return "Artista"
     }
+
     private fun getComments(response: JSONArray): List<Comentario> {
         val listComentario = mutableListOf<Comentario>()
         for (i in 0 until response.length()) {
