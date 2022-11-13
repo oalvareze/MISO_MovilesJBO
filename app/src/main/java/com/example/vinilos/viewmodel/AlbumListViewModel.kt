@@ -1,9 +1,13 @@
 package com.example.vinilos.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.model.Album
 import com.example.vinilos.repostories.AlbumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AlbumListViewModel(application: Application, var albumRepository: AlbumRepository) :
     AndroidViewModel(application) {
@@ -24,12 +28,21 @@ class AlbumListViewModel(application: Application, var albumRepository: AlbumRep
     }
 
     private fun refreshDataFromNetwork() {
-        albumRepository.getAlbums({
-            _albumsFiltered.postValue(it)
-            _albums.postValue(it)
-        }, {
-            print("entro")
-        })
+        try {
+            viewModelScope.launch(Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    var data = albumRepository.getAlbums()
+                    _albumsFiltered.postValue(data)
+                    _albums.postValue(data)
+                }
+            }
+        } catch (e:java.lang.Exception){
+            Log.d("Error", e.toString())
+        }
+//        albumRepository.getAlbums({
+//        }, {
+//            print("entro")
+//        })
     }
 
     fun getAlbumFiltered(genre: String) {
