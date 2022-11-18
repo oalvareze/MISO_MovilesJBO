@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_albumListFragment_to_createAlbumFragment"
             app:destination="@id/createAlbumFragment" />
+        <action
+            android:id="@+id/action_albumListFragment_to_collectorListFragment"
+            app:destination="@id/collectorListFragment" />
     </fragment>
     <fragment
         android:id="@+id/albumDetail"
@@ -37,4 +40,8 @@
         android:name="com.example.vinilos.view.createAlbum.CreateAlbumFragment"
         android:label="fragment_create_album"
         tools:layout="@layout/fragment_create_album" />
+    <fragment
+        android:id="@+id/collectorListFragment"
+        android:name="com.example.vinilos.view.collector.CollectorListFragment"
+        android:label="CollectorListFragment" />
 </navigation>

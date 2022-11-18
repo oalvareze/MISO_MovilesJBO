@@ -6,25 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
-import android.widget.ProgressBar
-import android.widget.Spinner
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentAlbumListBinding
 import com.example.vinilos.model.Album
 import com.example.vinilos.repostories.AlbumRepository
-
 import com.example.vinilos.viewmodel.AlbumListViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -50,6 +43,7 @@ class AlbumListFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.title="Vinilos"
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,6 +55,8 @@ class AlbumListFragment : Fragment() {
         val direction=AlbumListFragmentDirections
         viewModelAdapter= AlbumListAdapter(navController,direction)
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+
+        goCollectors(view, navController, direction)
 
         // Inflate the layout for this fragment
         return view;
@@ -132,15 +128,29 @@ class AlbumListFragment : Fragment() {
         }
         super.onViewCreated(view, savedInstanceState)
     }
-    fun filterByGender(genre:String){
+
+    fun filterByGender(genre: String) {
         this.viewModel.getAlbumFiltered(genre)
     }
+
+    fun createAlbum(view: View) {
+        Log.d("entro", "view")
+        val postButton: Button = view.findViewById(R.id.create_album)
+        postButton.setOnClickListener { this.viewModel.createAlbum() }
+    }
+
+    fun goCollectors(view: View, navController: NavController, navDirections: AlbumListFragmentDirections.Companion) {
+        Log.d("entro", "ir a collectors")
+        val btnGoCollectors: Button = view.findViewById(R.id.btnColeccionista)
+        btnGoCollectors.setOnClickListener {
+            navController.navigate(navDirections.actionAlbumListFragmentToCollectorListFragment())
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 
 
 }
