@@ -72,13 +72,13 @@ class AlbumListFragment : Fragment() {
         recyclerView = binding.albumListRV
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
-        viewModel = ViewModelProvider(this, AlbumListViewModel.Factory((activity as AppCompatActivity?)!!.application,AlbumRepository((activity as AppCompatActivity?)!!.application))).get(AlbumListViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumListViewModel.Factory((activity as AppCompatActivity?)!!.application,AlbumRepository((activity as AppCompatActivity?)!!.application)   )).get(AlbumListViewModel::class.java)
         progressBar=view.findViewById<ProgressBar>(R.id.progressBar)
 
         viewModel.albumsFiltered.observe(viewLifecycleOwner,Observer<List<Album>>{
 
             it.apply {
-                Log.d("Entro","3"+this.toString())
+
                 viewModelAdapter!!.albums=this
 
                 if(viewModel.genres.value==null){
@@ -121,9 +121,15 @@ class AlbumListFragment : Fragment() {
             }
 
         })
-        viewModel.loading.observe(viewLifecycleOwner,{
-            progressBar.visibility=if (it) View.VISIBLE else View.GONE
-        })
+        viewModel.loading.observe(viewLifecycleOwner) {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            val fab: View = view.findViewById(R.id.albumFloatingActionButton)
+            fab.visibility=if(it)View.GONE  else View.VISIBLE
+
+            fab.setOnClickListener{
+                findNavController().navigate(AlbumListFragmentDirections.actionAlbumListFragmentToCreateAlbumFragment())
+            }
+        }
         super.onViewCreated(view, savedInstanceState)
     }
     fun filterByGender(genre:String){

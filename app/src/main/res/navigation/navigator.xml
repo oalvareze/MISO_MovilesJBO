@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_albumListFragment_to_albumDetail"
             app:destination="@id/albumDetail" />
+        <action
+            android:id="@+id/action_albumListFragment_to_createAlbumFragment"
+            app:destination="@id/createAlbumFragment" />
     </fragment>
     <fragment
         android:id="@+id/albumDetail"
@@ -29,4 +32,9 @@
             app:argType="integer"
             android:defaultValue="-1" />
     </fragment>
+    <fragment
+        android:id="@+id/createAlbumFragment"
+        android:name="com.example.vinilos.view.createAlbum.CreateAlbumFragment"
+        android:label="fragment_create_album"
+        tools:layout="@layout/fragment_create_album" />
 </navigation>
