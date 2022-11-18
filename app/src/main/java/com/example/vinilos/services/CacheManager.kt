@@ -2,10 +2,7 @@ package com.example.vinilos.services
 
 import android.content.Context
 import android.util.LruCache
-import android.util.SparseArray
 import com.example.vinilos.model.Album
-import com.example.vinilos.model.Comentario
-import com.example.vinilos.model.Track
 
 class CacheManager(context: Context) {
 
