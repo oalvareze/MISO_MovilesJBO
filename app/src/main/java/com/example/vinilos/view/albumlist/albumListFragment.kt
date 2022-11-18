@@ -133,11 +133,11 @@ class AlbumListFragment : Fragment() {
         this.viewModel.getAlbumFiltered(genre)
     }
 
-    fun createAlbum(view: View) {
-        Log.d("entro", "view")
-        val postButton: Button = view.findViewById(R.id.create_album)
-        postButton.setOnClickListener { this.viewModel.createAlbum() }
-    }
+//    fun createAlbum(view: View) {
+//        Log.d("entro", "view")
+//        val postButton: Button = view.findViewById(R.id.create_album)
+//        postButton.setOnClickListener { this.viewModel.createAlbum() }
+//    }
 
     fun goCollectors(view: View, navController: NavController, navDirections: AlbumListFragmentDirections.Companion) {
         Log.d("entro", "ir a collectors")

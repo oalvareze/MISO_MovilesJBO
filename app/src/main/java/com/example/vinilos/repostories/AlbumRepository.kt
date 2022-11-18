@@ -3,7 +3,7 @@ package com.example.vinilos.repostories
 import android.app.Application
 import android.util.Log
 import com.example.vinilos.model.Album
-import com.example.vinilos.model.AlbumCreate
+//import com.example.vinilos.model.AlbumCreate
 import com.example.vinilos.model.Comentario
 import com.example.vinilos.model.Track
 import com.example.vinilos.services.AlbumService
@@ -90,15 +90,20 @@ class AlbumRepository(private val application: Application) {
         }
     }
 
-    suspend fun createAlbum(url: String) = suspendCoroutine<String> { cont ->
+    suspend fun createAlbum(name: String,
+                            cover: String,
+                            releaseDate: String,
+                            description: String,
+                            genre: String,
+                            recordLabel: String) = suspendCoroutine<String> { cont ->
         val albumService = AlbumService.getInstance(application)
         val album = mapOf<String, Any>(
-            "name" to "Comedia",
-            "cover" to "https://i.scdn.co/image/ab67616d0000b2734a8c66809d9bb7b8e1806099",
-            "releaseDate" to "1978",
-            "description" to "Album",
-            "genre" to "Salsa",
-            "recordLabel" to "Sony Music"
+            "name" to name,
+            "cover" to cover,
+            "releaseDate" to releaseDate,
+            "description" to description,
+            "genre" to genre,
+            "recordLabel" to recordLabel
         )
         albumService.instance.add(albumService.createAlbum("albums", JSONObject(album), {
             it.toString()

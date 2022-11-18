@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentCreateAlbumBinding
+import com.example.vinilos.repostories.AlbumRepository
 import com.example.vinilos.viewmodel.AlbumListViewModel
 import com.example.vinilos.viewmodel.CreateAlbumViewModel
 
@@ -37,12 +38,12 @@ class CreateAlbumFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel= ViewModelProvider(this,CreateAlbumViewModel.Factory((activity as AppCompatActivity?)!!.application))[CreateAlbumViewModel::class.java]
+        viewModel = ViewModelProvider(this, CreateAlbumViewModel.Factory((activity as AppCompatActivity?)!!.application,AlbumRepository((activity as AppCompatActivity?)!!.application)   )).get(CreateAlbumViewModel::class.java)
 
         var button=view.findViewById<Button>(R.id.creatAlbumButton)
-        button.setOnClickListener {
-            viewModel.postAlbum()
-        }
+//        button.setOnClickListener {
+//            viewModel.postAlbum()
+//        }
         super.onViewCreated(view, savedInstanceState)
     }
 }

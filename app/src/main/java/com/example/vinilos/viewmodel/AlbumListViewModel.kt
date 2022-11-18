@@ -76,22 +76,6 @@ class AlbumListViewModel(application: Application, var albumRepository: AlbumRep
         _loading.value = false
     }
 
-    fun createAlbum(){
-        Log.d("entro", "viewmodel")
-        try {
-            viewModelScope.launch(Dispatchers.Default){
-                withContext(Dispatchers.IO){
-                    var data = albumRepository.createAlbum("album")
-//                    _albumsFiltered.postValue(data)
-//                    _albums.postValue(data)
-                }
-            }
-        } catch (e:java.lang.Exception){
-            Log.d("Error", e.toString())
-        }
-
-    }
-
     class Factory(val app: Application, val albumRepository: AlbumRepository) :
         ViewModelProvider.Factory {
 
