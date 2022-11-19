@@ -11,42 +11,34 @@ import kotlinx.coroutines.withContext
 
 class CreateAlbumViewModel(application: Application, var albumRepository: AlbumRepository) :
     AndroidViewModel(application) {
-    private val _name = MutableLiveData<String>()
-    private val _cover = MutableLiveData<String>()
-    private val _date = MutableLiveData<String>()
-    private val _description = MutableLiveData<String>()
-    private val _label = MutableLiveData<String>()
-    val name: LiveData<String> get() = _name
-    val cover: LiveData<String> get() = _cover
-    val date: LiveData<String> get() = _date
-    val description: LiveData<String> get() = _description
-    val label: LiveData<String> get() = _label
-
+    private var _success=MutableLiveData<Boolean>()
+    private  var _loading=MutableLiveData<Boolean>()
+    val loading:LiveData<Boolean> get()=_loading
+    val succes:LiveData<Boolean> get()=_success
     init {
-        _name.postValue("")
-        _cover.postValue("")
-        _date.postValue("")
-        _description.postValue("")
-        _label.postValue("")
+        _success.postValue(false)
+        _loading.postValue(false)
     }
 
-    fun postAlbum() {
-        Log.d("Entro", name.value!!)
-        try {
+    fun postAlbum(name:String,cover:String,date:String,description:String,genre:String,recordLabel:String) {
+        _loading.postValue(true)
+       try {
             viewModelScope.launch(Dispatchers.Default) {
+
                 withContext(Dispatchers.IO) {
                     var data = albumRepository.createAlbum(
-                        name.toString(),
-                        cover.toString(),
-                        date.toString(),
-                        description.toString(),
-                        "Salsa","Sony Music"
+                        name,
+                        cover,
+                        date,
+                        description,
+                        genre,recordLabel
                     )
                 }
+                _success.postValue(true)
             }
         } catch (e: java.lang.Exception) {
-            Log.d("Error", e.toString())
-        }
+           Log.d("Entro", "error"+e.toString())
+       }
     }
 
     class Factory(val app: Application, val albumRepository: AlbumRepository) :

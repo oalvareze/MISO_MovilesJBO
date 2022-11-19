@@ -69,6 +69,7 @@
         android:layout_marginBottom="88dp"
         android:clickable="true"
         android:src="@android:drawable/btn_star_big_on"
+        android:visibility="gone"
         app:backgroundTint="#673AB7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

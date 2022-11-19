@@ -97,7 +97,8 @@ class AlbumRepository(private val application: Application) {
                             genre: String,
                             recordLabel: String) = suspendCoroutine<String> { cont ->
         val albumService = AlbumService.getInstance(application)
-        val album = mapOf<String, Any>(
+        Log.d("Entro","name:${name},cover:${cover},date:${releaseDate},description:${description},genre:${genre},RL:${recordLabel}")
+        val album = mapOf(
             "name" to name,
             "cover" to cover,
             "releaseDate" to releaseDate,
@@ -105,13 +106,14 @@ class AlbumRepository(private val application: Application) {
             "genre" to genre,
             "recordLabel" to recordLabel
         )
+        Log.d("Entro",JSONObject(album).toString())
         albumService.instance.add(albumService.createAlbum("albums", JSONObject(album), {
-            it.toString()
+          it.toString()
 
             cont.resume(it.toString())
         }, {
-            cont.resumeWithException(it)
-        }))
+            Log.d("Entro","Error")
+          cont.resumeWithException(it) }))
     }
 
 

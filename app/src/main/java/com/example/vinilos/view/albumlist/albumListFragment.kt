@@ -85,7 +85,7 @@ class AlbumListFragment : Fragment() {
 
         })
         viewModel.genres.observe(viewLifecycleOwner,Observer<List<String>>{
-            Log.d("Entro","Aqui")
+
             genreSpinner=view.findViewById<Spinner>(R.id.genresSpinner)
             var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,it.toList())
             genreSpinner.adapter=adapter
@@ -121,7 +121,8 @@ class AlbumListFragment : Fragment() {
             progressBar.visibility = if (it) View.VISIBLE else View.GONE
             val fab: View = view.findViewById(R.id.albumFloatingActionButton)
             fab.visibility=if(it)View.GONE  else View.VISIBLE
-
+            val coleccionista:View=view.findViewById(R.id.btnColeccionista)
+            coleccionista.visibility=if(it)View.GONE  else View.VISIBLE
             fab.setOnClickListener{
                 findNavController().navigate(AlbumListFragmentDirections.actionAlbumListFragmentToCreateAlbumFragment())
             }
@@ -133,11 +134,7 @@ class AlbumListFragment : Fragment() {
         this.viewModel.getAlbumFiltered(genre)
     }
 
-//    fun createAlbum(view: View) {
-//        Log.d("entro", "view")
-//        val postButton: Button = view.findViewById(R.id.create_album)
-//        postButton.setOnClickListener { this.viewModel.createAlbum() }
-//    }
+
 
     fun goCollectors(view: View, navController: NavController, navDirections: AlbumListFragmentDirections.Companion) {
         Log.d("entro", "ir a collectors")

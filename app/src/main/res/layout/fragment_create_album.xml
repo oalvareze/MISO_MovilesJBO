@@ -70,52 +70,23 @@
                     android:gravity="start|top"
                     android:hint="Descripcion"
                     android:inputType="textMultiLine"
-                    android:minHeight="48dp"
-                    android:visibility="visible"
+                    android:maxLength="255"
+                    android:maxLines="3"
 
+                    android:minHeight="48dp"
+                    android:scrollbars="vertical"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toTopOf="@+id/guideline2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
-                <EditText
-                    android:id="@+id/editTextDate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="200dp"
-                    android:ems="10"
-                    android:hint="DD/MM/AAAA"
-                    android:inputType="date"
-                    android:minHeight="48dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline8"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
-                <EditText
-                    android:id="@+id/editTextLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="180dp"
-                    android:layout_marginEnd="20dp"
-                    android:ems="10"
-
-                    android:hint="Etiqueta"
-                    android:inputType="textPersonName"
-                    android:minHeight="48dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline8"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline2" />
-
                 <Button
                     android:id="@+id/creatAlbumButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
                     android:text="Button"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -123,6 +94,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/guideline8"
                     app:layout_constraintVertical_bias="0.396" />
+
+                <EditText
+                    android:id="@+id/editTextGenre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:ems="10"
+                    android:hint="YYYY-MM-DD"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline2"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -135,7 +123,6 @@
                     android:gravity="center"
                     android:text="Agregar album"
                     android:textAlignment="center"
-                    android:textColor="#000000"
                     android:textSize="16sp"
                     app:fontWeight="700"
                     app:layout_constraintBottom_toTopOf="@+id/editTextAlbumName"
@@ -160,6 +147,13 @@
                     app:layout_constraintGuide_begin="277dp" />
 
                 <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="327dp" />
+
+                <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,6 +166,43 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layout_constraintGuide_begin="204dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerGenre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="5dp"
+                    android:minHeight="48dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline10"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline2"
+                    app:layout_constraintVertical_bias="0.307" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="185dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="20dp"
+                    android:minHeight="48dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline5"
+                    app:layout_constraintTop_toTopOf="@+id/guideline2"
+                    app:layout_constraintVertical_bias="0.3" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -193,7 +224,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="263dp" />
+            app:layout_constraintGuide_end="285dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline9"
