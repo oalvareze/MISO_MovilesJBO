@@ -3,11 +3,13 @@ package com.example.vinilos.repostories
 import android.app.Application
 import android.util.Log
 import com.example.vinilos.model.Album
+//import com.example.vinilos.model.AlbumCreate
 import com.example.vinilos.model.Comentario
 import com.example.vinilos.model.Track
 import com.example.vinilos.services.AlbumService
 import com.example.vinilos.services.CacheManager
 import org.json.JSONArray
+import org.json.JSONObject
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
@@ -87,6 +89,33 @@ class AlbumRepository(private val application: Application) {
             cont.resume(potentialResp)
         }
     }
+
+    suspend fun createAlbum(name: String,
+                            cover: String,
+                            releaseDate: String,
+                            description: String,
+                            genre: String,
+                            recordLabel: String) = suspendCoroutine<String> { cont ->
+        val albumService = AlbumService.getInstance(application)
+        Log.d("Entro","name:${name},cover:${cover},date:${releaseDate},description:${description},genre:${genre},RL:${recordLabel}")
+        val album = mapOf(
+            "name" to name,
+            "cover" to cover,
+            "releaseDate" to releaseDate,
+            "description" to description,
+            "genre" to genre,
+            "recordLabel" to recordLabel
+        )
+        Log.d("Entro",JSONObject(album).toString())
+        albumService.instance.add(albumService.createAlbum("albums", JSONObject(album), {
+          it.toString()
+
+            cont.resume(it.toString())
+        }, {
+            Log.d("Entro","Error")
+          cont.resumeWithException(it) }))
+    }
+
 
     private fun getTrack(response: JSONArray): List<Track> {
         val listTrack = mutableListOf<Track>()

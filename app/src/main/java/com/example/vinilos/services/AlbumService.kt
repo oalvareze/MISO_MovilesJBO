@@ -1,16 +1,13 @@
 package com.example.vinilos.services
 
 import android.content.Context
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.Response.ErrorListener
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.vinilos.model.Album
-import com.example.vinilos.model.Comentario
-import com.example.vinilos.model.Track
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -26,15 +23,12 @@ class AlbumService constructor(context: Context) {
                 instance = it
             }
         }
-
-
     }
 
     fun getAlbumsRequest(
         path: String, responseListener: Response.Listener<JSONArray>,
         errorListener: Response.ErrorListener
     ): JsonArrayRequest {
-
         return JsonArrayRequest(
             Request.Method.GET, BASE_URL + path, null,
             responseListener, errorListener
@@ -45,10 +39,23 @@ class AlbumService constructor(context: Context) {
         path: String, responseListener: Response.Listener<JSONObject>,
         errorListener: Response.ErrorListener
     ): JsonObjectRequest {
-
         return JsonObjectRequest(
             Request.Method.GET, BASE_URL + path, null,
             responseListener, errorListener
+        )
+    }
+
+    fun createAlbum(
+        path: String, request: JSONObject,
+        responseListener: Response.Listener<JSONObject>,
+        errorListener: ErrorListener
+    ): JsonObjectRequest {
+        return JsonObjectRequest(
+            Request.Method.POST,
+            BASE_URL + path,
+            request,
+            responseListener,
+            errorListener
         )
     }
 

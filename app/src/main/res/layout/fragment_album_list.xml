@@ -9,7 +9,7 @@
     <Spinner
         android:id="@+id/genresSpinner"
         android:layout_width="135dp"
-        android:layout_height="30dp"
+        android:layout_height="48dp"
         android:layout_marginStart="136dp"
         android:layout_marginTop="28dp"
         android:contentDescription="Filtrar"
@@ -40,5 +40,50 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/albumFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+
+        android:contentDescription="@string/next"
+
+        android:src="@android:drawable/ic_menu_add"
+
+        app:backgroundTint="#6200EE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:rippleColor="@color/teal_200"
+        app:tint="#FFFFFF" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="88dp"
+        android:clickable="true"
+        android:src="@android:drawable/btn_star_big_on"
+        android:visibility="gone"
+        app:backgroundTint="#673AB7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnColeccionista"
+        android:layout_width="250dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Mostrar coleccionistas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
