@@ -61,24 +61,32 @@ class AlbumListFragment : Fragment() {
         recyclerView.adapter = viewModelAdapter
         viewModel = ViewModelProvider(this, AlbumListViewModel.Factory((activity as AppCompatActivity?)!!.application,AlbumRepository((activity as AppCompatActivity?)!!.application)   )).get(AlbumListViewModel::class.java)
         progressBar=view.findViewById<ProgressBar>(R.id.progressBar)
-
+        genreSpinner=view.findViewById<Spinner>(R.id.genresSpinner)
+        var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,
+            listOf<String>("Generos","Rock","Classical", "Salsa", "Rock", "Folk"))
         viewModel.albumsFiltered.observe(viewLifecycleOwner,Observer<List<Album>>{
 
             it.apply {
 
                 viewModelAdapter!!.albums=this
 
-                if(viewModel.genres.value==null){
-                    viewModel.fillGenres()
-                }
             }
 
 
         })
-        viewModel.genres.observe(viewLifecycleOwner,Observer<List<String>>{
 
-            genreSpinner=view.findViewById<Spinner>(R.id.genresSpinner)
-            var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,it.toList())
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            val fab: View = view.findViewById(R.id.albumFloatingActionButton)
+            fab.visibility=if(it)View.GONE  else View.VISIBLE
+
+
+            genreSpinner.visibility=if(it)View.GONE  else View.VISIBLE
+            Log.d("Entro",genreSpinner.visibility.toString())
+            fab.setOnClickListener{
+                findNavController().navigate(AlbumListFragmentDirections.actionAlbumListFragmentToCreateAlbumFragment())
+            }
             genreSpinner.adapter=adapter
             genreSpinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener,
                 AdapterView.OnItemClickListener {
@@ -107,21 +115,13 @@ class AlbumListFragment : Fragment() {
 
             }
 
-        })
-        viewModel.loading.observe(viewLifecycleOwner) {
-            progressBar.visibility = if (it) View.VISIBLE else View.GONE
-            val fab: View = view.findViewById(R.id.albumFloatingActionButton)
-            fab.visibility=if(it)View.GONE  else View.VISIBLE
-            val coleccionista:View=view.findViewById(R.id.btnColeccionista)
-            coleccionista.visibility=if(it)View.GONE  else View.VISIBLE
-            fab.setOnClickListener{
-                findNavController().navigate(AlbumListFragmentDirections.actionAlbumListFragmentToCreateAlbumFragment())
-            }
+
         }
         super.onViewCreated(view, savedInstanceState)
     }
 
     fun filterByGender(genre: String) {
+
         this.viewModel.getAlbumFiltered(genre)
     }
 

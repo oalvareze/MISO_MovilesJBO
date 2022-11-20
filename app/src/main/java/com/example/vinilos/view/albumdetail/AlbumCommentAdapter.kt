@@ -13,10 +13,7 @@ import com.example.vinilos.model.Comentario
 
 class AlbumCommentAdapter :RecyclerView.Adapter<AlbumCommentAdapter.AlbumCommentViewHolder>(){
     var comments :List<Comentario> = emptyList()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
+
     class AlbumCommentViewHolder(val viewDataBinding: AlbumCommentItemBinding):
         RecyclerView.ViewHolder(viewDataBinding.root){
         companion object{

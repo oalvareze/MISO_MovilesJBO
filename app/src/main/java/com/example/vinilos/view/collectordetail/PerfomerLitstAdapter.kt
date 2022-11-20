@@ -12,10 +12,7 @@ import com.example.vinilos.model.Artist
 
 class PerfomerListAdapter : RecyclerView.Adapter<PerfomerListAdapter.PeformerListViewHolder>()  {
     var artists :List<Artist> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+
 
     class PeformerListViewHolder(val viewDataBinding: PerfomerListItemBinding):
         RecyclerView.ViewHolder(viewDataBinding.root){

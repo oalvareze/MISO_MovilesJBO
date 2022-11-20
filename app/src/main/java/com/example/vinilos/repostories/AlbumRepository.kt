@@ -25,8 +25,7 @@ class AlbumRepository(private val application: Application) {
         albumService.instance.add(albumService.getAlbumsRequest("albums", {
             val list = mutableListOf<Album>()
             for (i in 0 until it.length()) {
-                val listTrack: List<Track> = emptyList()
-                val listComments: List<Comentario> = emptyList()
+
 
                 list.add(
                     Album(
@@ -37,8 +36,8 @@ class AlbumRepository(private val application: Application) {
                         "a",
                         it.getJSONObject(i).get("genre").toString(),
                         "uno",
-                        listTrack,
-                        listComments,
+                        emptyList(),
+                        emptyList(),
                         "Artista"
                     )
                 )
@@ -59,9 +58,7 @@ class AlbumRepository(private val application: Application) {
 
             albumService.instance.add(albumService.getUniqueAlbumsRequest(url, {
 
-                val listTrack: List<Track> = getTrack(it.getJSONArray("tracks"))
-                val listComments: List<Comentario> = getComments(it.getJSONArray("comments"))
-                val artist = getArtist(it.getJSONArray("performers"))
+
 
                 val album = Album(
                     it.get("id").toString().toInt(),
@@ -71,14 +68,14 @@ class AlbumRepository(private val application: Application) {
                     it.get("description").toString(),
                     it.get("genre").toString(),
                     it.get("recordLabel").toString(),
-                    listTrack,
-                    listComments, artist
+                    getTrack(it.getJSONArray("tracks")),
+                    getComments(it.getJSONArray("comments")),getArtist(it.getJSONArray("performers"))
                 )
-                Log.d("llego", "aqui" + url.split("/")[1].toInt())
+
 
                 CacheManager.getInstance(application.applicationContext)
                     .addAlbum(url.split("/")[1].toInt(), album)
-                Log.d("paso", "aqui")
+
 
                 cont.resume(album)
             }, {
@@ -134,7 +131,7 @@ class AlbumRepository(private val application: Application) {
         if (response.length() > 0) {
             return response.getJSONObject(0).get("name").toString()
         } else
-            return "Artista"
+            return "Este album no tiene artista asignado"
     }
 
     private fun getComments(response: JSONArray): List<Comentario> {

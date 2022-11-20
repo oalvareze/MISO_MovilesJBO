@@ -26,7 +26,7 @@ class CreateAlbumViewModel(application: Application, var albumRepository: AlbumR
             viewModelScope.launch(Dispatchers.Default) {
 
                 withContext(Dispatchers.IO) {
-                    var data = albumRepository.createAlbum(
+                   albumRepository.createAlbum(
                         name,
                         cover,
                         date,

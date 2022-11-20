@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController2=navHostFragment.navController
-        Log.d("Entro", "onCreate: "+navHostFragment.navController.graph)
+
 
         setupActionBarWithNavController(navController2, AppBarConfiguration(navController2.graph))
       supportActionBar!!.title="Vinilos"
