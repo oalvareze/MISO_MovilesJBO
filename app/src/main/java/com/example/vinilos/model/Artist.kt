@@ -1,5 +1,5 @@
 package com.example.vinilos.model
-
+@kotlinx.serialization.Serializable
 data class Artist(
     val id: Int,
     val name: String,

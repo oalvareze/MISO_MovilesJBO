@@ -23,12 +23,18 @@ class AlbumDetailViewModel(
         refreshDataFromNetwork()
     }
 
-    private fun refreshDataFromNetwork() {
+     fun refreshDataFromNetwork() {
+
         try {
+
             viewModelScope.launch(Dispatchers.Default){
+                print("Aqui")
                 withContext(Dispatchers.IO){
+                    print("entro")
                     var data = albumRepository.getUniqueAlbum("albums/${albumId}")
+
                     _album.postValue(data)
+                    print("AAAA"+data.toString())
                 }
             }
 
