@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.vinilos.R
+
 import com.example.vinilos.databinding.FragmentPerfomerListBinding
-import com.example.vinilos.databinding.FragmentTrackListBinding
-import com.example.vinilos.databinding.PerfomerListItemBinding
+
 import com.example.vinilos.model.Artist
-import com.example.vinilos.view.albumdetail.TrackListAdapter
+
 
 
 class PerfomerList(var artists: List<Artist>) : Fragment() {

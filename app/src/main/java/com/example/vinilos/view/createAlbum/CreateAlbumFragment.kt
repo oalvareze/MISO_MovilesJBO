@@ -1,6 +1,5 @@
 package com.example.vinilos.view.createAlbum
 
-import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,30 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
+
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.vinilos.R
-import com.example.vinilos.databinding.FragmentCreateAlbumBinding
+
 import com.example.vinilos.repostories.AlbumRepository
-import com.example.vinilos.view.albumlist.AlbumListFragmentDirections
-import com.example.vinilos.viewmodel.AlbumListViewModel
+
 import com.example.vinilos.viewmodel.CreateAlbumViewModel
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeParseException
-import java.time.temporal.ValueRange
+
 import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CreateAlbumFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CreateAlbumFragment : Fragment() {
     // TODO: Rename and change types of parameters
 

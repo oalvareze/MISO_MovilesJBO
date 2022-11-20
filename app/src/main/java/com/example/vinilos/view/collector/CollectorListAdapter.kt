@@ -4,7 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.CollectorListItemBinding
 import com.example.vinilos.model.Collector
-import com.example.vinilos.view.albumlist.AlbumListFragmentDirections
+
 
 class CollectorListAdapter(private val navController: NavController,
                            val navDirections: CollectorListFragmentDirections.Companion): RecyclerView.Adapter<CollectorListAdapter.CollectionListViewHolder>()  {
