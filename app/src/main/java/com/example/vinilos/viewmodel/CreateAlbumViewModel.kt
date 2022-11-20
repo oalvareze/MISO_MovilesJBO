@@ -35,6 +35,7 @@ class CreateAlbumViewModel(application: Application, var albumRepository: AlbumR
                     )
                 }
                 _success.postValue(true)
+                _loading.postValue(false)
             }
         } catch (e: java.lang.Exception) {
            Log.d("Entro", "error"+e.toString())

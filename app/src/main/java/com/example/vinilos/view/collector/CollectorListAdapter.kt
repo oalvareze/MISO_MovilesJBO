@@ -2,6 +2,7 @@ package com.example.vinilos.view.collector
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.LayoutRes
@@ -14,7 +15,7 @@ import com.example.vinilos.model.Collector
 import com.example.vinilos.view.albumlist.AlbumListFragmentDirections
 
 class CollectorListAdapter(private val navController: NavController,
-                           val navDirections: AlbumListFragmentDirections.Companion): RecyclerView.Adapter<CollectorListAdapter.CollectionListViewHolder>()  {
+                           val navDirections: CollectorListFragmentDirections.Companion): RecyclerView.Adapter<CollectorListAdapter.CollectionListViewHolder>()  {
 
     var collectors :List<Collector> = emptyList()
         set(value) {
@@ -32,10 +33,9 @@ class CollectorListAdapter(private val navController: NavController,
 
         val holder=CollectionListViewHolder(withDataBinding)
 
-//        holder.itemView.setOnClickListener(View.OnClickListener() {
-//                this.navController.navigate(navDirections.actionAlbumListFragmentToAlbumDetail(albums[holder.adapterPosition].albumId))
-//
-//            })
+   holder.itemView.setOnClickListener(View.OnClickListener() {
+             this.navController.navigate(navDirections.actionCollectorListFragmentToCollectorDetailFragment(collectors[holder.adapterPosition].id))
+    })
         return holder
     }
 
@@ -53,10 +53,7 @@ class CollectorListAdapter(private val navController: NavController,
         }
 
 
-//         holder.itemView.findViewById<TextView>(R.id.collectorName).setText("hhhh")
-        //texto.setText("hola")
-        //        holder.itemView.findViewById<TextView>(R.id.collectorName).text = "prueba"
-//        holder.itemView.findViewById(R.id.collectorName)
+
     }
 
     override fun getItemCount(): Int {

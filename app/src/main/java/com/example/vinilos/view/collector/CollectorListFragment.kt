@@ -72,7 +72,7 @@ class CollectorListFragment : Fragment() {
         _binding = FragmentCollectorListBinding.inflate(inflater, container, false)
         val view = binding.root
         val navController = findNavController()
-        val direction = AlbumListFragmentDirections
+        val direction = CollectorListFragmentDirections
         Log.d("paso por aqui", "one")
         viewModelAdapter = CollectorListAdapter(navController, direction)
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()

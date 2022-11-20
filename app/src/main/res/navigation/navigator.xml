@@ -49,5 +49,21 @@
     <fragment
         android:id="@+id/collectorListFragment"
         android:name="com.example.vinilos.view.collector.CollectorListFragment"
-        android:label="CollectorListFragment" />
+        android:label="CollectorListFragment" >
+        <action
+            android:id="@+id/action_collectorListFragment_to_collectorDetailFragment"
+            app:destination="@id/collectorDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectorDetailFragment"
+        android:name="com.example.vinilos.view.collectordetail.CollectorDetailFragment"
+        android:label="fragment_collector_detail"
+        tools:layout="@layout/fragment_collector_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_collectorDetailFragment_to_albumDetail"
+            app:destination="@id/albumDetail" />
+    </fragment>
 </navigation>

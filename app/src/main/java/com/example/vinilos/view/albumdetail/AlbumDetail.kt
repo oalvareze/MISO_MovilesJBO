@@ -23,7 +23,6 @@ import com.example.vinilos.databinding.FragmentTrackListBinding
 import com.example.vinilos.model.Album
 import com.example.vinilos.model.Track
 import com.example.vinilos.repostories.AlbumRepository
-import com.example.vinilos.view.albumlist.AlbumListAdapter
 import com.example.vinilos.viewmodel.AlbumDetailViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
