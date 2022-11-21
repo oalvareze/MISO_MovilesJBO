@@ -15,10 +15,7 @@ import com.example.vinilos.model.AlbumCollector
 
 class AlbumCollectorListAdapter(var navController: NavController,var navDirrections:CollectorDetailFragmentDirections.Companion) : RecyclerView.Adapter<AlbumCollectorListAdapter.AlbumCollectorListViewHolder>(){
     var albums :List<AlbumCollector> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+
     class AlbumCollectorListViewHolder(val viewDataBinding: AlbumCollectorListItemBinding):
     RecyclerView.ViewHolder(viewDataBinding.root){
     companion object{

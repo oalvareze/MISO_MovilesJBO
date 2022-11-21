@@ -1,21 +1,21 @@
 package com.example.vinilos.view.collectordetail
 
 import android.os.Bundle
-import android.util.Log
+
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.findFragment
+
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import androidx.viewpager.widget.PagerAdapter
+
 import androidx.viewpager2.widget.ViewPager2
 import com.example.vinilos.R
 import com.example.vinilos.repostories.CollectorRepository
-import com.example.vinilos.view.albumdetail.AlbumDetailArgs
+
 import com.example.vinilos.viewmodel.CollectorDetailViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

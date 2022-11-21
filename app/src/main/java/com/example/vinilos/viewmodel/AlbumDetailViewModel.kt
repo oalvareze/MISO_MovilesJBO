@@ -28,7 +28,7 @@ class AlbumDetailViewModel(
         try {
 
             viewModelScope.launch(Dispatchers.Default){
-                print("Aqui")
+
                 withContext(Dispatchers.IO){
                     print("entro")
                     var data = albumRepository.getUniqueAlbum("albums/${albumId}")

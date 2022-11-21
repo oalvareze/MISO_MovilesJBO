@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.vinilos.R
+
 import com.example.vinilos.databinding.FragmentAlbumCollectorBinding
-import com.example.vinilos.databinding.FragmentPerfomerListBinding
+
 import com.example.vinilos.model.AlbumCollector
 
 class AlbumCollectorFragment(val albums: List<AlbumCollector>) : Fragment() {

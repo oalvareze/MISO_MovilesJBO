@@ -15,9 +15,16 @@ class CreateAlbumViewModel(application: Application, var albumRepository: AlbumR
     private  var _loading=MutableLiveData<Boolean>()
     val loading:LiveData<Boolean> get()=_loading
     val succes:LiveData<Boolean> get()=_success
+    private var _error=MutableLiveData<Boolean>()
+    val error:LiveData<Boolean> get()=_error
     init {
         _success.postValue(false)
         _loading.postValue(false)
+        _error.postValue(false)
+    }
+    fun showError(){
+        _loading.postValue(!loading.value!!)
+        _error.postValue(!error.value!!)
     }
 
     fun postAlbum(name:String,cover:String,date:String,description:String,genre:String,recordLabel:String) {
@@ -26,7 +33,7 @@ class CreateAlbumViewModel(application: Application, var albumRepository: AlbumR
             viewModelScope.launch(Dispatchers.Default) {
 
                 withContext(Dispatchers.IO) {
-                    var data = albumRepository.createAlbum(
+                   albumRepository.createAlbum(
                         name,
                         cover,
                         date,

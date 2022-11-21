@@ -22,11 +22,12 @@ class CollectorDetailViewModel(
     }
 
     fun refreshDataFromNetwork() {
+
         try {
             viewModelScope.launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
                     try {
-
+                        print("entro")
                         val artistList = collectorRepository.getCollectorFavoriteArtist(id)
                         var albumCollector=collectorRepository.getCollectorAlbums(id)
                         val data = collectorRepository.getCollector(id).copy(favoritePerformers = artistList, collectorAlbums = albumCollector)
