@@ -51,55 +51,7 @@ class MainActivityTest {
         Thread.sleep(800)
         onView(withText(album)).check(matches(isDisplayed()))
     }
-    @Test
-    fun `validate_tracks`() {
 
-        val album = "Buscando América"
-
-
-        Thread.sleep(800)
-        onView(withText(album)).check(matches(isDisplayed()))
-        onView(withText(album)).perform(click())
-        Thread.sleep(500)
-        onView(withText(album)).check(matches(isDisplayed()))
-        onView(withText("Decisiones")).check(matches(isDisplayed()))
-        Thread.sleep(500)
-
-        Espresso.pressBack()
-        Thread.sleep(500);
-        onView(withText("A Day at the Races")).check(matches(isDisplayed()))
-        onView(withText("A Day at the Races")).perform(click())
-        Thread.sleep(500)
-        var textView= Espresso.onView(ViewMatchers.withId(R.id.tracksMensaje))
-        textView.check(matches(isDisplayed()))
-
-    }
-    @Test
-    fun `validate_comments`() {
-        val gender = "Salsa"
-        val album = "Buscando América"
-
-
-        Thread.sleep(1000)
-        onView(withText(album)).check(matches(isDisplayed()))
-        onView(withText(album)).perform(click())
-        Thread.sleep(500)
-        onView(withText(album)).check(matches(isDisplayed()))
-        onView(withText("COMENTARIOS")).perform(click())
-        Thread.sleep(500)
-
-        onView(withText("Descripcion")).check(matches(isDisplayed()))
-        Espresso.pressBack()
-        Thread.sleep(500)
-        onView(withText("A Day at the Races")).check(matches(isDisplayed()))
-        onView(withText("A Day at the Races")).perform(click())
-        Thread.sleep(500)
-        onView(withText("COMENTARIOS")).perform(click())
-        Thread.sleep(500)
-        var textView= Espresso.onView(ViewMatchers.withId(R.id.mensajeComentarios))
-        textView.check(matches(isDisplayed()))
-
-    }
     @Test
     fun `validate_collectors`(){
         Thread.sleep(1000)
