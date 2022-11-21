@@ -112,6 +112,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_2_API_31" value="120" />
                   <entry key="R58M6226F9F" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="samsung&#10; SM-A505G" value="120" />
@@ -140,6 +141,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_2_API_31" value="120" />
                   <entry key="R58M6226F9F" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="samsung&#10; SM-A505G" value="120" />
@@ -181,6 +183,7 @@
               <option name="preferredColumnWidths">
                 <map>
                   <entry key="Duration" value="90" />
+                  <entry key="Pixel_2_API_31" value="120" />
                   <entry key="R58M6226F9F" value="120" />
                   <entry key="Tests" value="360" />
                   <entry key="samsung&#10; SM-A505G" value="120" />

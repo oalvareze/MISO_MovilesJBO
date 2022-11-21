@@ -54,7 +54,7 @@ class AlbumDetailViewModelTest() {
     val rule = InstantTaskExecutorRule()
 
     @Test
-    fun `Success state works`()  = runTest{
+    fun `Check album name`()  = runTest{
 
         val application = mockk<Application>()
         albumRepository = mockk<AlbumRepository>()

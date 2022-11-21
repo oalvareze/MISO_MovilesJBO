@@ -174,14 +174,17 @@ class MainActivityTest {
         Thread.sleep(1000)
         onView(withId(R.id.albumFloatingActionButton)).perform(click())
         Thread.sleep(1000)
-        onView(withId(R.id.editTextAlbumName)).perform(click()).perform(typeText("Nombre"))
+        onView(withId(R.id.editTextAlbumName)).perform(click()).perform(replaceText("Nombre"))
         Thread.sleep(500)
         onView(withId(R.id.editTextAlbumCover)).perform(click()).perform(typeText("Nombre"))
         Thread.sleep(500)
         onView(withId(R.id.editTextDescription)).perform(click()).perform(typeText("Descripcion"))
         Thread.sleep(500)
-        onView(withId(R.id.editTextGenre)).perform(click()).perform(typeText("1990-04-20"))
+
+        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard())
         Thread.sleep(500)
+        onView(withId(R.id.editTextGenre)).perform(click()).perform(typeText("1990-04-20"))
+        Thread.sleep(100)
 
         onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard())
         Thread.sleep(1000)
@@ -195,12 +198,15 @@ class MainActivityTest {
         Thread.sleep(1000)
         onView(withId(R.id.albumFloatingActionButton)).perform(click())
         Thread.sleep(1000)
-        onView(withId(R.id.editTextAlbumName)).perform(click()).perform(typeText("Nombre"))
+        onView(withId(R.id.editTextAlbumName)).perform(click()).perform(replaceText("Nombre"))
         Thread.sleep(500)
         onView(withId(R.id.editTextAlbumCover)).perform(click())
-            .perform(typeText("https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Stadiumarcadium.jpg/220px-Stadiumarcadium.jpg"))
+            .perform(replaceText("https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Stadiumarcadium.jpg/220px-Stadiumarcadium.jpg"))
         Thread.sleep(500)
         onView(withId(R.id.editTextDescription)).perform(click()).perform(typeText("Descripcion"))
+        Thread.sleep(500)
+
+        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard())
         Thread.sleep(500)
         onView(withId(R.id.editTextGenre)).perform(click()).perform(typeText("cdas/04-35"))
         Thread.sleep(500)
@@ -212,9 +218,9 @@ class MainActivityTest {
         onView(withText("Formato de fecha invalido")).check(matches(isDisplayed()))
         Thread.sleep(500)
         onView(withId(R.id.editTextGenre)).perform(click()).perform(clearText()).perform(typeText("1990-04-35"))
-        Thread.sleep(500)
+        Thread.sleep(1000)
         onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard())
-    Thread.sleep(500)
+    Thread.sleep(1000)
         onView(withId(R.id.creatAlbumButton)).perform(click())
 
         Thread.sleep(500)
@@ -223,35 +229,41 @@ class MainActivityTest {
     }
     @Test
     fun `validate_create_album`() {
-        Thread.sleep(1000)
+        Thread.sleep(2000)
         onView(withId(R.id.albumFloatingActionButton)).perform(click())
         Thread.sleep(1000)
-        onView(withId(R.id.editTextAlbumName)).perform(click()).perform(typeText("Stadium Arcadium"))
+        onView(withId(R.id.editTextAlbumName)).perform(replaceText("Stadium Arcadium"))
         Thread.sleep(500)
         onView(withId(R.id.editTextAlbumCover)).perform(click())
             .perform(replaceText("https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Stadiumarcadium.jpg/220px-Stadiumarcadium.jpg"))
-        Thread.sleep(500)
+        Thread.sleep(1000)
         onView(withId(R.id.editTextDescription)).perform(click()).perform(replaceText("Estadium Arcadium es el noveno álbum de estudio del grupo de rock estadounidense Red Hot Chili Peppers, lanzado durante el mes de mayo de 2006."))
-        Thread.sleep(500)
-        onView(withId(R.id.editTextGenre)).perform(click()).perform(clearText()).perform(typeText("2006-05-05"))
-        Thread.sleep(500)
-        onView(withText("Classical")).perform(click())
-
-        onView(withText("Rock")).perform(click())
         Thread.sleep(500)
         onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard())
         Thread.sleep(500)
+
+        onView(withId(R.id.editTextGenre)).perform(click()).perform(replaceText("2006-05-05"))
+        Thread.sleep(500)
+        onView(ViewMatchers.isRoot()).perform(ViewActions.closeSoftKeyboard())
+        Thread.sleep(500)
+        Thread.sleep(1000)
+        onView(withText("Classical")).perform(click())
+
+        onView(withText("Rock")).perform(click())
+
         onView(withId(R.id.creatAlbumButton)).perform(click())
 
-        Thread.sleep(1000)
-        onView(withId(R.id.albumListRV)).perform(
-            RecyclerViewActions.scrollToLastPosition<AlbumListAdapter.AlbumListViewHolder>())
+
         Thread.sleep(1000)
         onView(withId(R.id.genresSpinner))
             .perform(click())
 
         onView(withText("Rock")).perform(click())
         Thread.sleep(800)
+        Thread.sleep(1000)
+        onView(withId(R.id.albumListRV)).perform(
+            RecyclerViewActions.scrollToLastPosition<AlbumListAdapter.AlbumListViewHolder>())
+        Thread.sleep(1000)
         onView(allOf(withText("Stadium Arcadium"),isDisplayed()))
     }
 

@@ -81,7 +81,8 @@ class AlbumListFragment : Fragment() {
             val fab: View = view.findViewById(R.id.albumFloatingActionButton)
             fab.visibility=if(it)View.GONE  else View.VISIBLE
 
-
+            val btnGoCollectors: Button = view.findViewById(R.id.btnColeccionista)
+            btnGoCollectors.visibility=if(it)View.GONE  else View.VISIBLE
             genreSpinner.visibility=if(it)View.GONE  else View.VISIBLE
             Log.d("Entro",genreSpinner.visibility.toString())
             fab.setOnClickListener{
