@@ -6,37 +6,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
-import android.widget.ProgressBar
-import android.widget.Spinner
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentAlbumListBinding
 import com.example.vinilos.model.Album
 import com.example.vinilos.repostories.AlbumRepository
-
 import com.example.vinilos.viewmodel.AlbumListViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AlbumListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AlbumListFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private  var _binding:FragmentAlbumListBinding?=null
@@ -50,6 +34,7 @@ class AlbumListFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.title="Vinilos"
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,6 +47,8 @@ class AlbumListFragment : Fragment() {
         viewModelAdapter= AlbumListAdapter(navController,direction)
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
 
+        goCollectors(view, navController, direction)
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -72,26 +59,35 @@ class AlbumListFragment : Fragment() {
         recyclerView = binding.albumListRV
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = viewModelAdapter
-        viewModel = ViewModelProvider(this, AlbumListViewModel.Factory((activity as AppCompatActivity?)!!.application,AlbumRepository((activity as AppCompatActivity?)!!.application))).get(AlbumListViewModel::class.java)
+        viewModel = ViewModelProvider(this, AlbumListViewModel.Factory((activity as AppCompatActivity?)!!.application,AlbumRepository((activity as AppCompatActivity?)!!.application)   )).get(AlbumListViewModel::class.java)
         progressBar=view.findViewById<ProgressBar>(R.id.progressBar)
-
+        genreSpinner=view.findViewById<Spinner>(R.id.genresSpinner)
+        var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,
+            listOf<String>("Generos","Rock","Classical", "Salsa", "Folk"))
         viewModel.albumsFiltered.observe(viewLifecycleOwner,Observer<List<Album>>{
 
             it.apply {
-                Log.d("Entro","3"+this.toString())
+
                 viewModelAdapter!!.albums=this
 
-                if(viewModel.genres.value==null){
-                    viewModel.fillGenres()
-                }
             }
 
 
         })
-        viewModel.genres.observe(viewLifecycleOwner,Observer<List<String>>{
-            Log.d("Entro","Aqui")
-            genreSpinner=view.findViewById<Spinner>(R.id.genresSpinner)
-            var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,it.toList())
+
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            val fab: View = view.findViewById(R.id.albumFloatingActionButton)
+            fab.visibility=if(it)View.GONE  else View.VISIBLE
+
+            val btnGoCollectors: Button = view.findViewById(R.id.btnColeccionista)
+            btnGoCollectors.visibility=if(it)View.GONE  else View.VISIBLE
+            genreSpinner.visibility=if(it)View.GONE  else View.VISIBLE
+            Log.d("Entro",genreSpinner.visibility.toString())
+            fab.setOnClickListener{
+                findNavController().navigate(AlbumListFragmentDirections.actionAlbumListFragmentToCreateAlbumFragment())
+            }
             genreSpinner.adapter=adapter
             genreSpinner.onItemSelectedListener=object:AdapterView.OnItemSelectedListener,
                 AdapterView.OnItemClickListener {
@@ -120,21 +116,30 @@ class AlbumListFragment : Fragment() {
 
             }
 
-        })
-        viewModel.loading.observe(viewLifecycleOwner,{
-            progressBar.visibility=if (it) View.VISIBLE else View.GONE
-        })
+
+        }
         super.onViewCreated(view, savedInstanceState)
     }
-    fun filterByGender(genre:String){
+
+    fun filterByGender(genre: String) {
+
         this.viewModel.getAlbumFiltered(genre)
     }
+
+
+
+    fun goCollectors(view: View, navController: NavController, navDirections: AlbumListFragmentDirections.Companion) {
+        Log.d("entro", "ir a collectors")
+        val btnGoCollectors: Button = view.findViewById(R.id.btnColeccionista)
+        btnGoCollectors.setOnClickListener {
+            navController.navigate(navDirections.actionAlbumListFragmentToCollectorListFragment())
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 
 
 }

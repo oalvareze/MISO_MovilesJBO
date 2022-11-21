@@ -1,7 +1,6 @@
 package com.example.vinilos.view.albumdetail
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,19 +10,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.CreationExtras
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.vinilos.R
-import com.example.vinilos.databinding.FragmentAlbumDetailBinding
-import com.example.vinilos.databinding.FragmentAlbumListBinding
-import com.example.vinilos.databinding.FragmentTrackListBinding
 import com.example.vinilos.model.Album
-import com.example.vinilos.model.Track
 import com.example.vinilos.repostories.AlbumRepository
-import com.example.vinilos.view.albumlist.AlbumListAdapter
 import com.example.vinilos.viewmodel.AlbumDetailViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

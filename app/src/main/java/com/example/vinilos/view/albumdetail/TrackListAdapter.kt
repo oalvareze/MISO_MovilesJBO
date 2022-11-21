@@ -11,10 +11,7 @@ import com.example.vinilos.model.Track
 
 class TrackListAdapter: RecyclerView.Adapter<TrackListAdapter.TrackListViewHolder>()  {
     var tracks :List<Track> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+
     class TrackListViewHolder(val viewDataBinding: AlbumTrackItemBinding):
         RecyclerView.ViewHolder(viewDataBinding.root){
         companion object{

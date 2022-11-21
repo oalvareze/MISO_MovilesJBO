@@ -1,9 +1,13 @@
 package com.example.vinilos.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.model.Album
 import com.example.vinilos.repostories.AlbumRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AlbumListViewModel(application: Application, var albumRepository: AlbumRepository) :
     AndroidViewModel(application) {
@@ -13,26 +17,36 @@ class AlbumListViewModel(application: Application, var albumRepository: AlbumRep
     private val _albumsFiltered = MutableLiveData<List<Album>>();
     val albumsFiltered: LiveData<List<Album>> get() = _albumsFiltered;
     private val _genres = MutableLiveData<List<String>>()
-    val genres: MutableLiveData<List<String>> get() = _genres
+
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: MutableLiveData<Boolean> get() = _loading
 
     init {
+        _loading.value = true
         refreshDataFromNetwork()
-        _loading.value = true;
+        ;
     }
 
     private fun refreshDataFromNetwork() {
-        albumRepository.getAlbums({
-            _albumsFiltered.postValue(it)
-            _albums.postValue(it)
-        }, {
-            print("entro")
-        })
+        try {
+            viewModelScope.launch(Dispatchers.Default){
+                withContext(Dispatchers.IO){
+                    var data = albumRepository.getAlbums()
+                    _albumsFiltered.postValue(data)
+                    _albums.postValue(data)
+                    loading.postValue(false)
+                }
+            }
+
+        } catch (e:java.lang.Exception){
+            Log.d("Error", e.toString())
+        }
+
     }
 
     fun getAlbumFiltered(genre: String) {
+        if(albumsFiltered!=null){
 
         if (genre == "Generos") {
             if (_albums.value != null) {
@@ -48,20 +62,9 @@ class AlbumListViewModel(application: Application, var albumRepository: AlbumRep
             }
             _albumsFiltered.postValue(filterAlbums)
 
-        }
+        }}
     }
 
-    fun fillGenres() {
-        var genresSet = mutableSetOf<String>()
-        genresSet.add("Generos")
-        if (_albumsFiltered.value != null) {
-            for (album in _albumsFiltered.value!!) {
-                genresSet.add(album.genre)
-            }
-        }
-        _genres.postValue(genresSet.toList())
-        _loading.value = false
-    }
 
     class Factory(val app: Application, val albumRepository: AlbumRepository) :
         ViewModelProvider.Factory {
