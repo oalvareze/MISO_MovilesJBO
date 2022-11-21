@@ -43,10 +43,6 @@ class AlbumListViewModel(application: Application, var albumRepository: AlbumRep
             Log.d("Error", e.toString())
         }
 
-//        albumRepository.getAlbums({
-//        }, {
-//            print("entro")
-//        })
     }
 
     fun getAlbumFiltered(genre: String) {
