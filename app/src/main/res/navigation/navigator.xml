@@ -14,6 +14,12 @@
         <action
             android:id="@+id/action_albumListFragment_to_albumDetail"
             app:destination="@id/albumDetail" />
+        <action
+            android:id="@+id/action_albumListFragment_to_createAlbumFragment"
+            app:destination="@id/createAlbumFragment" />
+        <action
+            android:id="@+id/action_albumListFragment_to_collectorListFragment"
+            app:destination="@id/collectorListFragment" />
     </fragment>
     <fragment
         android:id="@+id/albumDetail"
@@ -28,5 +34,36 @@
             android:name="albumId"
             app:argType="integer"
             android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/createAlbumFragment"
+        android:name="com.example.vinilos.view.createAlbum.CreateAlbumFragment"
+        android:label="fragment_create_album"
+        tools:layout="@layout/fragment_create_album" >
+        <action
+            android:id="@+id/action_createAlbumFragment_to_albumListFragment"
+            app:destination="@id/albumListFragment"
+            app:popUpTo="@id/albumListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectorListFragment"
+        android:name="com.example.vinilos.view.collector.CollectorListFragment"
+        android:label="CollectorListFragment" >
+        <action
+            android:id="@+id/action_collectorListFragment_to_collectorDetailFragment"
+            app:destination="@id/collectorDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/collectorDetailFragment"
+        android:name="com.example.vinilos.view.collectordetail.CollectorDetailFragment"
+        android:label="fragment_collector_detail"
+        tools:layout="@layout/fragment_collector_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_collectorDetailFragment_to_albumDetail"
+            app:destination="@id/albumDetail" />
     </fragment>
 </navigation>

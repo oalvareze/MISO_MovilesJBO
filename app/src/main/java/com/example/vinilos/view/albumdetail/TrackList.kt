@@ -12,13 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentTrackListBinding
 import com.example.vinilos.model.Track
-import org.w3c.dom.Text
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
 class TrackListFragment(val trackList: List<Track>,private val description:String) : Fragment() {
@@ -26,10 +21,6 @@ class TrackListFragment(val trackList: List<Track>,private val description:Strin
     private  var _binding: FragmentTrackListBinding?=null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
