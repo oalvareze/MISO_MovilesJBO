@@ -48,6 +48,7 @@ class AlbumListFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
 
         goCollectors(view, navController, direction)
+        goArtist(view, navController, direction)
 
         // Inflate the layout for this fragment
         return view;
@@ -133,6 +134,13 @@ class AlbumListFragment : Fragment() {
         val btnGoCollectors: Button = view.findViewById(R.id.btnColeccionista)
         btnGoCollectors.setOnClickListener {
             navController.navigate(navDirections.actionAlbumListFragmentToCollectorListFragment())
+        }
+    }
+    fun goArtist(view: View, navController: NavController, navDirections: AlbumListFragmentDirections.Companion) {
+        Log.d("entro", "ir a artist")
+        val btnGoCollectors: Button = view.findViewById(R.id.goArtist)
+        btnGoCollectors.setOnClickListener {
+            navController.navigate(navDirections.actionAlbumListFragmentToArtistListFragment())
         }
     }
 
