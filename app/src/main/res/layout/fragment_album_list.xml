@@ -111,4 +111,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.92612857" />
 
+    <Button
+        android:id="@+id/goArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Artist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

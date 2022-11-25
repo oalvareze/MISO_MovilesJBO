@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_albumListFragment_to_collectorListFragment"
             app:destination="@id/collectorListFragment" />
+        <action
+            android:id="@+id/action_albumListFragment_to_artistListFragment"
+            app:destination="@id/artistListFragment" />
     </fragment>
     <fragment
         android:id="@+id/albumDetail"
@@ -66,4 +69,9 @@
             android:id="@+id/action_collectorDetailFragment_to_albumDetail"
             app:destination="@id/albumDetail" />
     </fragment>
+    <fragment
+        android:id="@+id/artistListFragment"
+        android:name="com.example.vinilos.view.artist.ArtistListFragment"
+        android:label="fragment_artist_list"
+        tools:layout="@layout/fragment_artist_list" />
 </navigation>
