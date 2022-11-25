@@ -3,7 +3,6 @@ package com.example.vinilos
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
@@ -11,7 +10,6 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -235,4 +233,14 @@ class MainActivityTest {
             }
         }
     }
+
+    @Test
+    fun `validate_list_artist`() {
+        val artist = "Rubén Blades Bellido de Luna"
+        Thread.sleep(1800)
+        onView(withId(R.id.goArtist)).perform(click())
+        Thread.sleep(800)
+        onView(withText(artist)).check(matches(isDisplayed()))
+    }
+
 }
