@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -41,6 +42,8 @@ class ArtistDetailAlbumAdapter(): RecyclerView.Adapter<ArtistDetailAlbumAdapter.
             AlbumListViewHolder.LAYOUT,
             parent,
             false)
+
+
         val holder=AlbumListViewHolder(withDataBinding)
 
 
