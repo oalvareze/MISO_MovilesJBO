@@ -49,7 +49,12 @@ class ArtistService constructor(context: Context) {
 //            errorListener
 //        )
 //    }
-
+    fun getUniqueArtist(    path:String,responseListener: Response.Listener<JSONObject>, errorListener: Response.ErrorListener):JsonObjectRequest{
+    return JsonObjectRequest(
+          Request.Method.GET, BASE_URL + path, null,
+            responseListener, errorListener
+     )
+    }
     fun getArtistRequest(
         responseListener: Response.Listener<JSONArray>, errorListener: Response.ErrorListener
     ): JsonArrayRequest {

@@ -2,6 +2,7 @@ package com.example.vinilos.view.artist
 
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.core.net.toUri
@@ -19,7 +20,7 @@ import com.example.vinilos.view.albumlist.AlbumListFragmentDirections
 
 class ArtistListAdapter(
     private val navController: NavController,
-    val navDirections: AlbumListFragmentDirections.Companion
+    val navDirections: ArtistListFragmentDirections.Companion
 ) : RecyclerView.Adapter<ArtistListAdapter.ArtistListViewHolder>() {
 
 
@@ -39,10 +40,10 @@ class ArtistListAdapter(
         )
         val holder = ArtistListViewHolder(withDataBinding)
 
-//        holder.itemView.setOnClickListener(View.OnClickListener() {
-//                this.navController.navigate(navDirections.actionAlbumListFragmentToAlbumDetail(albums[holder.adapterPosition].albumId))
-//
-//            })
+  holder.itemView.setOnClickListener(View.OnClickListener() {
+               this.navController.navigate(navDirections.actionArtistListFragmentToArtistDetailFragment(artists[holder.adapterPosition].id.toString()))
+
+           })
         return holder
     }
 

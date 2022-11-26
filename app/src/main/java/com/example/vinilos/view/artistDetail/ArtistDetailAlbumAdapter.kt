@@ -1,4 +1,9 @@
-package com.example.vinilos.view.albumlist
+package com.example.vinilos.view.artistDetail
+
+import com.example.vinilos.view.albumlist.AlbumListAdapter
+import com.example.vinilos.view.albumlist.AlbumListFragmentDirections
+
+
 
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +24,7 @@ import com.example.vinilos.databinding.AlbumListItemBinding
 import com.example.vinilos.model.Album
 import com.example.vinilos.model.AlbumCreate
 
-class AlbumListAdapter(private val navController: NavController,val navDirections: AlbumListFragmentDirections.Companion): RecyclerView.Adapter<AlbumListAdapter.AlbumListViewHolder>()  {
+class ArtistDetailAlbumAdapter(): RecyclerView.Adapter<ArtistDetailAlbumAdapter.AlbumListViewHolder>()  {
 
 
 
@@ -38,20 +43,17 @@ class AlbumListAdapter(private val navController: NavController,val navDirection
             false)
         val holder=AlbumListViewHolder(withDataBinding)
 
-        holder.itemView.setOnClickListener(View.OnClickListener() {
-                this.navController.navigate(navDirections.actionAlbumListFragmentToAlbumDetail(albums[holder.adapterPosition].id))
 
-            })
         return holder
     }
-    
+
     class AlbumListViewHolder(val viewDataBinding:AlbumListItemBinding):
         RecyclerView.ViewHolder(viewDataBinding.root){
-    companion object{
-        @LayoutRes
-        val LAYOUT=R.layout.album_list_item
+        companion object{
+            @LayoutRes
+            val LAYOUT=R.layout.album_list_item
 
-    }}
+        }}
     override fun onBindViewHolder(holder: AlbumListViewHolder, position: Int) {
         holder.viewDataBinding.also {
             it.album = albums[position]
@@ -59,11 +61,11 @@ class AlbumListAdapter(private val navController: NavController,val navDirection
 
         Glide.with(holder.itemView.context,).load(albums[position].cover.toUri().buildUpon().scheme("https").build()).apply(
             RequestOptions()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)).into(holder.itemView.findViewById(R.id.coverImage))
+                .diskCacheStrategy(DiskCacheStrategy.ALL)).into(holder.itemView.findViewById(R.id.coverImage))
     }
 
     override fun getItemCount(): Int {
         return albums.size
-    }
+    }}
 
-}
+

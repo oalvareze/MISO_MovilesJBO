@@ -64,7 +64,7 @@ class ArtistListFragment : Fragment() {
         _binding = FragmentArtistListBinding.inflate(inflater, container, false)
         val view = binding.root
         val navController = findNavController()
-        val direction = AlbumListFragmentDirections
+        val direction = ArtistListFragmentDirections
         viewModelAdapter = ArtistListAdapter(navController, direction)
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
 
@@ -104,7 +104,11 @@ class ArtistListFragment : Fragment() {
             )
         ).get(ArtistListViewModel::class.java)
         progressBar = view.findViewById<ProgressBar>(R.id.progressBarArtist)
-
+        viewModel.loading.observe(viewLifecycleOwner,Observer<Boolean>{
+            it.apply {
+                progressBar.visibility= if (it) View.VISIBLE else View.GONE
+            }
+        })
         viewModel.loadArtist.observe(viewLifecycleOwner, Observer<List<Artist>> {
             it.apply {
                 viewModelAdapter!!.artists = this

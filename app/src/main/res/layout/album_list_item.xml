@@ -6,7 +6,7 @@
     <data>
             <variable
                 name="album"
-                type="com.example.vinilos.model.Album" />
+                type="com.example.vinilos.model.AlbumCreate" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

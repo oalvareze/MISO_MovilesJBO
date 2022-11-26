@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentAlbumListBinding
 import com.example.vinilos.model.Album
+import com.example.vinilos.model.AlbumCreate
 import com.example.vinilos.repostories.AlbumRepository
 import com.example.vinilos.viewmodel.AlbumListViewModel
 
@@ -65,7 +66,7 @@ class AlbumListFragment : Fragment() {
         genreSpinner=view.findViewById<Spinner>(R.id.genresSpinner)
         var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,
             listOf<String>("Generos","Rock","Classical", "Salsa", "Folk"))
-        viewModel.albumsFiltered.observe(viewLifecycleOwner,Observer<List<Album>>{
+        viewModel.albumsFiltered.observe(viewLifecycleOwner,Observer<List<AlbumCreate>>{
 
             it.apply {
 

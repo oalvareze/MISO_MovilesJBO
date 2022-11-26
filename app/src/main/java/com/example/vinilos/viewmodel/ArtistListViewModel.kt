@@ -36,6 +36,7 @@ class ArtistListViewModel(
                     val data = artistRepository.getArtists()
                     _artists.postValue(data)
                     _loadArtist.postValue(data)
+                    Log.d("entro",data.toString()       )
                 }
             }
         } catch (e: java.lang.Exception) {
