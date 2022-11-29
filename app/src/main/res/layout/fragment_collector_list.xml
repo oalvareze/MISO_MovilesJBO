@@ -31,7 +31,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Buscador"
+            android:hint="@string/buscador"
             android:inputType="text" />
 
         <androidx.recyclerview.widget.RecyclerView

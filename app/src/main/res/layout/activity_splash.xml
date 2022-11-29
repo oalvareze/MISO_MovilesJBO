@@ -23,7 +23,7 @@
         android:layout_marginTop="94dp"
         android:contentDescription="Title"
         android:fontFamily="sans-serif"
-        android:text="Vinilo Music"
+        android:text="@string/vinilo_music"
         android:textAlignment="center"
 
         android:textAllCaps="true"
