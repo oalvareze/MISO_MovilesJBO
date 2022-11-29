@@ -43,11 +43,7 @@ class ArtistDetailAlbumAdapter(): RecyclerView.Adapter<ArtistDetailAlbumAdapter.
             parent,
             false)
 
-
-        val holder=AlbumListViewHolder(withDataBinding)
-
-
-        return holder
+        return AlbumListViewHolder(withDataBinding)
     }
 
     class AlbumListViewHolder(val viewDataBinding:AlbumListItemBinding):

@@ -86,5 +86,17 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_artistDetailFragment_to_artistAlbumFragment"
+            app:destination="@id/artistAlbumFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistAlbumFragment"
+        android:name="com.example.vinilos.view.artistAlbum.ArtistAlbumFragment"
+        android:label="fragment_artist_album"
+        tools:layout="@layout/fragment_artist_album" >
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>
