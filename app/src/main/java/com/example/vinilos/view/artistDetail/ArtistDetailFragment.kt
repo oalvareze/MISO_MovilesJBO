@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentArtistDetailBinding
 import com.example.vinilos.databinding.FragmentCollectorListBinding
 import com.example.vinilos.model.AlbumCreate
+import com.example.vinilos.model.Artist
 import com.example.vinilos.model.ArtistDetail
 import com.example.vinilos.repostories.AlbumRepository
 import com.example.vinilos.repostories.ArtistRepository
@@ -68,6 +70,10 @@ class ArtistDetailFragment : Fragment() {
 
 
         })
+        var button=view.findViewById<Button>(R.id.albumArtistButton)
+        button.setOnClickListener {
+            findNavController().navigate(ArtistDetailFragmentDirections.actionArtistDetailFragmentToArtistAlbumFragment(args.id))
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
