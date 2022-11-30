@@ -64,8 +64,13 @@ class AlbumListFragment : Fragment() {
         viewModel = ViewModelProvider(this, AlbumListViewModel.Factory((activity as AppCompatActivity?)!!.application,AlbumRepository((activity as AppCompatActivity?)!!.application)   )).get(AlbumListViewModel::class.java)
         progressBar=view.findViewById<ProgressBar>(R.id.progressBar)
         genreSpinner=view.findViewById<Spinner>(R.id.genresSpinner)
-        var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,
-            listOf<String>("Generos","Rock","Classical", "Salsa", "Folk"))
+        var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.generos_musicales, android.R.layout.simple_spinner_item)
+            .also { arrayAdapter ->
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                genreSpinner.adapter = arrayAdapter
+            }
+//        var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,
+//            listOf<String>("Generos","Rock","Classical", "Salsa", "Folk"))
         viewModel.albumsFiltered.observe(viewLifecycleOwner,Observer<List<AlbumCreate>>{
 
             it.apply {

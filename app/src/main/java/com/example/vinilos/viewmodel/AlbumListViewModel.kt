@@ -49,7 +49,7 @@ class AlbumListViewModel(application: Application, var albumRepository: AlbumRep
     fun getAlbumFiltered(genre: String) {
         if(albumsFiltered.value!=null){
 
-        if (genre == "Generos") {
+        if (genre == "Generos" || genre == "Genre") {
             if (_albums.value != null) {
                 _albumsFiltered.postValue(_albums.value)
             }
