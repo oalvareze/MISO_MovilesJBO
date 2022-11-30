@@ -17,9 +17,8 @@ import kotlin.coroutines.suspendCoroutine
 
 class AlbumRepository(private val application: Application) {
 
-    init {
-        print("Inicia el consumo AlbumRepository")
-    }
+
+
 
     suspend fun getAlbums() = suspendCoroutine<List<AlbumCreate>> { cont ->
         val albumService = AlbumService.getInstance(application)
@@ -33,10 +32,10 @@ class AlbumRepository(private val application: Application) {
                         Integer.parseInt(it.getJSONObject(i).get("id").toString()),
                         it.getJSONObject(i).get("name").toString(),
                         it.getJSONObject(i).get("cover").toString(),
-                        "a,",
-                        "a",
+                        it.getJSONObject(i).get("releaseDate").toString(),
+                        it.getJSONObject(i).get("description").toString(),
                         it.getJSONObject(i).get("genre").toString(),
-                        "uno",
+                        it.getJSONObject(i).get("recordLabel").toString(),
 
 
                     )

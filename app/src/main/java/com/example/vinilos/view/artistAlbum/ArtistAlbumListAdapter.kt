@@ -23,6 +23,7 @@ class ArtistAlbumListAdapter() :
             notifyDataSetChanged()
         }
     var albumsSelected = mutableSetOf<Int>()
+    var currentALbums:Set<Int> = emptySet()
     class ArtistAlbumListViewHolder(val viewDataBinding: ArtistAlbumItemBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         companion object {
@@ -47,6 +48,10 @@ class ArtistAlbumListAdapter() :
             it.album = albums[position]
         }
         var checkbox = holder.itemView.findViewById<CheckBox>(R.id.checkBox)
+        if(albums[position].id in currentALbums ){
+            checkbox.isChecked=true
+            albumsSelected.add(albums[position].id)
+        }
         checkbox.setOnCheckedChangeListener{ _, _ ->
             if(checkbox.isChecked){
               albumsSelected.add(albums[position].id)

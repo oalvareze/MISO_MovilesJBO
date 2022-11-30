@@ -18,8 +18,10 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/albumFloatingActionButton"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/goArtist"
-        app:layout_constraintTop_toBottomOf="@+id/albumListRV" />
+        app:layout_constraintTop_toBottomOf="@+id/albumListRV"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Spinner
         android:id="@+id/genresSpinner"
@@ -117,12 +119,13 @@
         android:id="@+id/goArtist"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
+        android:layout_marginStart="112dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="16dp"
         android:drawableLeft="@drawable/artist_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/albumListRV" />
+        app:layout_constraintTop_toBottomOf="@+id/albumListRV"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
