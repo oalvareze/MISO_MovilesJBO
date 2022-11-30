@@ -1,6 +1,7 @@
 package com.example.vinilos.services
 
 import android.content.Context
+import android.util.Log
 
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -62,6 +63,14 @@ class ArtistService constructor(context: Context) {
             Request.Method.GET, BASE_URL, null,
             responseListener, errorListener
         )
+    }
+
+    fun udpateArtistAlbum(path: String, jsonArray: JSONArray,  responseListener: Response.Listener<JSONObject>,
+                          errorListener: Response.ErrorListener
+    ): JsonObjectCustomRequest {
+        Log.d("Entro",jsonArray[0].toString())
+    return  JsonObjectCustomRequest(Request.Method.PUT, BASE_URL+path,
+        jsonArray,responseListener,errorListener)
     }
 
 

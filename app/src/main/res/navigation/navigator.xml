@@ -98,5 +98,10 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_artistAlbumFragment_to_artistDetailFragment"
+            app:destination="@id/artistDetailFragment"
+            app:popUpTo="@id/artistDetailFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
