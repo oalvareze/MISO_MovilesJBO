@@ -7,6 +7,12 @@
     <string name="next">Next</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="descripcion_splash">Logo de la aplicacion</string>
+    <string name="descripcion_performer">Imagen de artista</string>
+    <string name="descripcion_crear_album">Ilustracion de una persona escuchando musica</string>
+    <string name="descripcion_album_cover">Imagen del album</string>
+    <string name="descripcion_track">Ilustracion de una nota musical</string>
+    <string name="filtrar">Filtrar</string>
     <string name="asociar_album">Asociar album</string>
     <string name="tracks">Tracks</string>
     <string name="comentarios">Comentarios</string>
@@ -19,15 +25,25 @@
     <string name="portada">Portada</string>
     <string name="descripcion">Descripcion</string>
     <string name="crear">Crear</string>
+    <string name="agregar">Agregar</string>
     <string name="yyyy_mm_dd">YYYY-MM-DD</string>
     <string name="agregar_album">Agregar album</string>
     <string name="este_album_no_tiene_traks_asociados">Este album no tiene traks asociados</string>
     <string name="vinilo_music">Vinilo Music</string>
+    <string name="detalle_appbar">Detalle</string>
+    <string name="colleccionistas_appbar">Coleccionistas</string>
+    <string name="crear_album_appbar">Crear album</string>
+    <string name="asociar_album_appbar">Asociar album</string>
+    <string name="artistas_appbar">Artistas</string>
     <string name="detalles">Detalles</string>
     <string name="descripcion_comentario_album">Descripcion</string>
     <string name="message_no_album">Este album no tiene comentarios</string>
     <string name="message_artist_album">Asociar un album con un artista</string>
-
+    <string name="collecionista_rv_desc">Lista de coleccionistas</string>
+    <string name="album_rv_desc">Lista de albums</string>
+    <string name="track_rv_list">Lista de tracks</string>
+    <string name="artist_rv_list">Lista de artistas</string>
+    <string name="add_album_to_artist">Agregar</string>
     <string-array name="generos_musicales">
         <item>Generos</item>
         <item>Rock</item>

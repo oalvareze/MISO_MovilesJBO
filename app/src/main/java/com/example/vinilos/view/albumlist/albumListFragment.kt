@@ -32,7 +32,7 @@ class AlbumListFragment : Fragment() {
     private lateinit var progressBar:ProgressBar
     private lateinit var genreSpinner:Spinner
     override fun onCreate(savedInstanceState: Bundle?) {
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title="Vinilos"
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.vinilo_music)
         super.onCreate(savedInstanceState)
     }
 
@@ -40,7 +40,7 @@ class AlbumListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title="Vinilos"
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.vinilo_music)
         _binding=FragmentAlbumListBinding.inflate(inflater, container,false)
         val view=binding.root
         val navController=findNavController()

@@ -48,6 +48,7 @@ class ArtistAlbumListAdapter() :
             it.album = albums[position]
         }
         var checkbox = holder.itemView.findViewById<CheckBox>(R.id.checkBox)
+
         if(albums[position].id in currentALbums ){
             checkbox.isChecked=true
             albumsSelected.add(albums[position].id)

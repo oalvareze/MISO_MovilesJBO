@@ -8,6 +8,7 @@ import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -53,8 +54,8 @@ class MainActivityTest {
     @Test
     fun `validate_collectors`(){
         Thread.sleep(1000)
-        onView(withText("COLECCIONISTAS")).check(matches(isDisplayed()))
-        onView(withText("COLECCIONISTAS")).perform(click())
+        onView(withId(R.id.btnColeccionista)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnColeccionista)).perform(click())
         Thread.sleep(2000)
         onView(withText("Jaime Monsalve")).check(matches(isDisplayed()))
 
@@ -62,8 +63,8 @@ class MainActivityTest {
     @Test
     fun `validate_collectors_search`(){
         Thread.sleep(1000)
-        onView(withText("COLECCIONISTAS")).check(matches(isDisplayed()))
-        onView(withText("COLECCIONISTAS")).perform(click())
+        onView(withId(R.id.btnColeccionista)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnColeccionista)).perform(click())
         Thread.sleep(2000)
         onView(withText("Jaime Monsalve")).check(matches(isDisplayed()))
         onView(ViewMatchers.withId(R.id.inputSearch)).perform(click()).perform(typeText("Ma"))
@@ -73,8 +74,8 @@ class MainActivityTest {
     @Test
     fun `validate_collectors_detail`(){
         Thread.sleep(1000)
-        onView(withText("COLECCIONISTAS")).check(matches(isDisplayed()))
-        onView(withText("COLECCIONISTAS")).perform(click())
+        onView(withId(R.id.btnColeccionista)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnColeccionista)).perform(click())
         Thread.sleep(2000)
         onView(withText("Jaime Monsalve")).check(matches(isDisplayed()))
         onView(withText("Jaime Monsalve")).perform(click())
@@ -85,8 +86,8 @@ class MainActivityTest {
     @Test
     fun `validate_collectors_favorite_performer`(){
         Thread.sleep(1000)
-        onView(withText("COLECCIONISTAS")).check(matches(isDisplayed()))
-        onView(withText("COLECCIONISTAS")).perform(click())
+        onView(withId(R.id.btnColeccionista)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnColeccionista)).perform(click())
         Thread.sleep(2000)
         onView(withText("Jaime Monsalve")).check(matches(isDisplayed()))
         onView(withText("Jaime Monsalve")).perform(click())
@@ -97,8 +98,8 @@ class MainActivityTest {
     @Test
     fun `validate_collectors_album`(){
         Thread.sleep(1000)
-        onView(withText("COLECCIONISTAS")).check(matches(isDisplayed()))
-        onView(withText("COLECCIONISTAS")).perform(click())
+        onView(withId(R.id.btnColeccionista)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnColeccionista)).perform(click())
         Thread.sleep(2000)
         onView(withText("Jaime Monsalve")).check(matches(isDisplayed()))
         onView(withText("Jaime Monsalve")).perform(click())
@@ -241,6 +242,47 @@ class MainActivityTest {
         onView(withId(R.id.goArtist)).perform(click())
         Thread.sleep(800)
         onView(withText(artist)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun `validate_name_artist_details`(){
+        val artist = "Rubén Blades Bellido de Luna"
+        Thread.sleep(1800)
+        onView(withId(R.id.goArtist)).perform(click())
+        Thread.sleep(800)
+        onView(withText(artist)).perform(click())
+        Thread.sleep(800)
+        onView(withId(R.id.artistDetailName)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun `validate_add_associate_album_artist`(){
+        val artist = "Rubén Blades Bellido de Luna"
+        Thread.sleep(1800)
+        onView(withId(R.id.goArtist)).perform(click())
+        Thread.sleep(800)
+        onView(withText(artist)).perform(click())
+        Thread.sleep(800)
+        onView(withId(R.id.albumArtistButton)).perform(click())
+        onView(withText("Stadium Arcadium (Rock)")).perform(click())
+        onView(withId(R.id.artistAlbumButton)).perform(click())
+        Thread.sleep(1000)
+        onView(withText("Stadium Arcadium")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun `validate_delete_associate_album_artist`(){
+        val artist = "Rubén Blades Bellido de Luna"
+        Thread.sleep(1800)
+        onView(withId(R.id.goArtist)).perform(click())
+        Thread.sleep(800)
+        onView(withText(artist)).perform(click())
+        Thread.sleep(800)
+        onView(withId(R.id.albumArtistButton)).perform(click())
+        onView(withText("Stadium Arcadium (Rock)")).perform(click())
+        onView(withId(R.id.artistAlbumButton)).perform(click())
+        Thread.sleep(1000)
+        onView(withText("Stadium Arcadium")).check(doesNotExist())
     }
 
 }

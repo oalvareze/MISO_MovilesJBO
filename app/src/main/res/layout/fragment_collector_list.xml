@@ -32,13 +32,15 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="@string/buscador"
-            android:inputType="text" />
+            android:inputType="text"
+            android:minHeight="48dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/collectorRecycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/collecionista_rv_desc"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.426"
