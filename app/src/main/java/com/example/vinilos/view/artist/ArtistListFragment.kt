@@ -60,7 +60,8 @@ class ArtistListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Vinilos"
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.artistas_appbar)
         _binding = FragmentArtistListBinding.inflate(inflater, container, false)
         val view = binding.root
         val navController = findNavController()

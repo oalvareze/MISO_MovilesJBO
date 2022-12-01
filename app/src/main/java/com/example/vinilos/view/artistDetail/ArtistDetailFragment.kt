@@ -45,7 +45,7 @@ class ArtistDetailFragment : Fragment() {
        _binding= FragmentArtistDetailBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         viewModelAdapter= ArtistDetailAlbumAdapter()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title="Detalle"
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.detalle_appbar)
         return binding.root
 
     }
@@ -78,3 +78,5 @@ class ArtistDetailFragment : Fragment() {
     }
 
 }
+
+

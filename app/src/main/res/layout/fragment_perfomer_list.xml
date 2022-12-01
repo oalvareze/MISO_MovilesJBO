@@ -10,9 +10,10 @@
         android:id="@+id/performListRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/artist_rv_list"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/perfomer_list_item"/>
+        tools:listitem="@layout/perfomer_list_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

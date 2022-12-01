@@ -31,7 +31,7 @@ class AlbumDetail : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title="Detalle"
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.detalle_appbar)
         return inflater.inflate(R.layout.fragment_album_detail, container, false)
     }
     fun updateUi(view:View,album: Album){

@@ -46,6 +46,7 @@ class ArtistAlbumFragment : Fragment() {
     ))[ArtistAlbumViewModel::class.java]
         _binding=FragmentArtistAlbumBinding.inflate(inflater,container,false)
 
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.asociar_album_appbar)
         albumArtistAdapter= ArtistAlbumListAdapter()
         return  binding.root
 
@@ -56,7 +57,7 @@ class ArtistAlbumFragment : Fragment() {
         var button=view.findViewById<Button>(R.id.artistAlbumButton)
         viewModel.album.observe(viewLifecycleOwner){
             it.apply {
-                Log.d("Entro2",it.toString())
+
                 albumArtistAdapter!!.albums=it
                 albumArtistAdapter!!.currentALbums=viewModel.artistAlbum()
 

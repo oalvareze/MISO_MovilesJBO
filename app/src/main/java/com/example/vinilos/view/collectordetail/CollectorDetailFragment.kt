@@ -36,6 +36,8 @@ class CollectorDetailFragment : Fragment() {
         viewModel=ViewModelProvider(this,CollectorDetailViewModel.Factory((activity as AppCompatActivity?)!!.application,
             CollectorRepository((activity as AppCompatActivity?)!!.application),args.id.toString()
         ))[CollectorDetailViewModel::class.java]
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.detalle_appbar)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_collector_detail, container, false)
     }

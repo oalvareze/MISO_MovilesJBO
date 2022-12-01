@@ -19,7 +19,8 @@
             android:id="@+id/artistDetailImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
+
+            android:contentDescription="@string/descripcion_performer" />
 
         <TextView
             android:id="@+id/textView2"
