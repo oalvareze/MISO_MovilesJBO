@@ -53,5 +53,6 @@
     <string name="artist_rv_list">Artists list</string>
 
     <string name="agregar">Add</string>
+    <string name="add_album_to_artist">Add</string>
 
 </resources>

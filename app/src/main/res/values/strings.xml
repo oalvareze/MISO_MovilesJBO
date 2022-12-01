@@ -43,6 +43,7 @@
     <string name="album_rv_desc">Lista de albums</string>
     <string name="track_rv_list">Lista de tracks</string>
     <string name="artist_rv_list">Lista de artistas</string>
+    <string name="add_album_to_artist">Agregar</string>
     <string-array name="generos_musicales">
         <item>Generos</item>
         <item>Rock</item>
