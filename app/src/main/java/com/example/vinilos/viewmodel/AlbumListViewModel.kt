@@ -33,10 +33,14 @@ class AlbumListViewModel(application: Application, var albumRepository: AlbumRep
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = albumRepository.getAlbums()
+                  try{
+                   var data = albumRepository.getAlbums()
                     _albumsFiltered.postValue(data)
                     _albums.postValue(data)
-                    loading.postValue(false)
+                    loading.postValue(false)}
+                    catch (e:Exception){
+                  Log.d("Entro",e.toString())
+                    }
                 }
             }
 

@@ -26,14 +26,17 @@
 
     <Spinner
         android:id="@+id/genresSpinner"
-        android:layout_width="135dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
         android:contentDescription="@string/filtrar"
         android:minHeight="48dp"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline15"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -41,18 +44,19 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
-        android:contentDescription="@string/album_rv_desc"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="80dp"
         android:clipToPadding="false"
+        android:contentDescription="@string/album_rv_desc"
         android:padding="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genresSpinner"
-        app:layout_constraintVertical_bias="0.0"
 
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/album_list_item" />
 
     <ProgressBar
@@ -69,12 +73,13 @@
         android:id="@+id/albumFloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+
         android:clickable="true"
 
         android:contentDescription="@string/next"
 
         android:src="@android:drawable/ic_menu_add"
-
         app:backgroundTint="#6200EE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
