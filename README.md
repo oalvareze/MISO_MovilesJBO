@@ -17,14 +17,4 @@ Para visualizar o trabajar en la aplicación podrá:
     6. Asegúrese de construir el proyecto, es decir, que todas las dependencias llamadas en el archivo `build.gradle` se encuentren descargadas.
     7. Para ejecutar la aplicación solo bastará con ir a la clase `SplashActivity`, clic derecho y clic en Run.
 
-**Nota**: Puede que la primera vez que se arranque el proyecto, presente lentitud o fallo, esto es debido a que el backend se encuentra desplegado en Heroku de forma gratuita, por políticas de Heroku los proyectos _free_ tienen 
-sus limitantes, una de esas es apagar la máquina después de cierto tiempo de inactividad.
-## Ejecucion de pruebas
-Una vez importado el proyecto en Android studio
-### E2E
-1. Click derecho en el paquete com.example.vinilos(AndroidTest)
-2. Click en run test como se muestra en la imagen
 
-![e2e](https://user-images.githubusercontent.com/98716277/200218870-75d074df-8c32-4d2f-a797-d7770e9648c9.png)
-<br>
-Antes de realizar las pruebas e2e es recomendable ejecutar la aplicacion para encender la maquina en heroku, para que no ocurra errores al ejecutar las pruebas
