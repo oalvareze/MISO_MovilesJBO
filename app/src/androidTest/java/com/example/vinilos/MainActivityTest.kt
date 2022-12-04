@@ -16,6 +16,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.example.vinilos.view.albumlist.AlbumListAdapter
+import com.example.vinilos.view.artistAlbum.ArtistAlbumListAdapter
 import com.example.vinilos.view.collector.CollectorListAdapter
 import org.hamcrest.CoreMatchers.*
 import org.junit.Assert.*
@@ -256,7 +257,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun `validate_add_associate_album_artist`(){
+    fun `validate_update_album_artist`(){
         val artist = "Rubén Blades Bellido de Luna"
         Thread.sleep(1800)
         onView(withId(R.id.goArtist)).perform(click())
@@ -264,25 +265,11 @@ class MainActivityTest {
         onView(withText(artist)).perform(click())
         Thread.sleep(800)
         onView(withId(R.id.albumArtistButton)).perform(click())
-        onView(withText("Stadium Arcadium (Rock)")).perform(click())
+        onView(withId(R.id.artistAlbumRV)).perform(RecyclerViewActions.actionOnItemAtPosition<ArtistAlbumListAdapter.ArtistAlbumListViewHolder>(0,customAction(R.id.checkBox)))
+        Thread.sleep(1000)
         onView(withId(R.id.artistAlbumButton)).perform(click())
         Thread.sleep(1000)
-        onView(withText("Stadium Arcadium")).check(matches(isDisplayed()))
-    }
 
-    @Test
-    fun `validate_delete_associate_album_artist`(){
-        val artist = "Rubén Blades Bellido de Luna"
-        Thread.sleep(1800)
-        onView(withId(R.id.goArtist)).perform(click())
-        Thread.sleep(800)
-        onView(withText(artist)).perform(click())
-        Thread.sleep(800)
-        onView(withId(R.id.albumArtistButton)).perform(click())
-        onView(withText("Stadium Arcadium (Rock)")).perform(click())
-        onView(withId(R.id.artistAlbumButton)).perform(click())
-        Thread.sleep(1000)
-        onView(withText("Stadium Arcadium")).check(doesNotExist())
     }
 
 }

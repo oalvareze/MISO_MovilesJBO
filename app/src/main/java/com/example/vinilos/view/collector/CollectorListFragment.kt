@@ -31,7 +31,7 @@ import com.example.vinilos.viewmodel.CollectorListViewModel
 
 
 
-class CollectorListFragment : Fragment() {
+class   CollectorListFragment : Fragment() {
 
 
     private var _binding: FragmentCollectorListBinding? = null
