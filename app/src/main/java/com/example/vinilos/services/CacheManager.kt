@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.LruCache
 import com.example.vinilos.model.Album
 import com.example.vinilos.model.Artist
+import com.example.vinilos.model.ArtistDetail
 import com.example.vinilos.model.Collector
 
 class CacheManager(context: Context) {
@@ -34,13 +35,16 @@ class CacheManager(context: Context) {
     fun getAlbum(albumId: Int): Album? {
         return if (albums[albumId] != null) albums[albumId]!! else null
     }
-    private  var artists:LruCache<Int,Artist> =LruCache(5)
- fun addArtist(id:Int,artist:Artist){
+    private  var artists:LruCache<Int,ArtistDetail> =LruCache(5)
+ fun addArtist(id:Int,artist:ArtistDetail){
      if(artists[id]==null){
          artists.put(id,artist)
      }
  }
-    fun getArtist(id:Int):Artist?{
+    fun updateArtist(id: Int,artist: ArtistDetail){
+        artists.put(id,artist)
+    }
+    fun getArtist(id:Int):ArtistDetail?{
         return if(artists[id]!=null) artists[id]!!else null
     }
 } 

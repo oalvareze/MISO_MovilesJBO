@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vinilos.R
 import com.example.vinilos.databinding.FragmentAlbumListBinding
 import com.example.vinilos.model.Album
+import com.example.vinilos.model.AlbumCreate
 import com.example.vinilos.repostories.AlbumRepository
 import com.example.vinilos.viewmodel.AlbumListViewModel
 
@@ -31,7 +32,7 @@ class AlbumListFragment : Fragment() {
     private lateinit var progressBar:ProgressBar
     private lateinit var genreSpinner:Spinner
     override fun onCreate(savedInstanceState: Bundle?) {
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title="Vinilos"
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.vinilo_music)
         super.onCreate(savedInstanceState)
     }
 
@@ -39,7 +40,7 @@ class AlbumListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title="Vinilos"
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.vinilo_music)
         _binding=FragmentAlbumListBinding.inflate(inflater, container,false)
         val view=binding.root
         val navController=findNavController()
@@ -48,6 +49,7 @@ class AlbumListFragment : Fragment() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
 
         goCollectors(view, navController, direction)
+        goArtist(view, navController, direction)
 
         // Inflate the layout for this fragment
         return view;
@@ -62,9 +64,14 @@ class AlbumListFragment : Fragment() {
         viewModel = ViewModelProvider(this, AlbumListViewModel.Factory((activity as AppCompatActivity?)!!.application,AlbumRepository((activity as AppCompatActivity?)!!.application)   )).get(AlbumListViewModel::class.java)
         progressBar=view.findViewById<ProgressBar>(R.id.progressBar)
         genreSpinner=view.findViewById<Spinner>(R.id.genresSpinner)
-        var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,
-            listOf<String>("Generos","Rock","Classical", "Salsa", "Folk"))
-        viewModel.albumsFiltered.observe(viewLifecycleOwner,Observer<List<Album>>{
+        var adapter = ArrayAdapter.createFromResource(requireContext(), R.array.generos_musicales, android.R.layout.simple_spinner_item)
+            .also { arrayAdapter ->
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                genreSpinner.adapter = arrayAdapter
+            }
+//        var adapter=ArrayAdapter<String>(requireContext(),android.R.layout.simple_spinner_item,
+//            listOf<String>("Generos","Rock","Classical", "Salsa", "Folk"))
+        viewModel.albumsFiltered.observe(viewLifecycleOwner,Observer<List<AlbumCreate>>{
 
             it.apply {
 
@@ -133,6 +140,13 @@ class AlbumListFragment : Fragment() {
         val btnGoCollectors: Button = view.findViewById(R.id.btnColeccionista)
         btnGoCollectors.setOnClickListener {
             navController.navigate(navDirections.actionAlbumListFragmentToCollectorListFragment())
+        }
+    }
+    fun goArtist(view: View, navController: NavController, navDirections: AlbumListFragmentDirections.Companion) {
+        Log.d("entro", "ir a artist")
+        val btnGoCollectors: Button = view.findViewById(R.id.goArtist)
+        btnGoCollectors.setOnClickListener {
+            navController.navigate(navDirections.actionAlbumListFragmentToArtistListFragment())
         }
     }
 

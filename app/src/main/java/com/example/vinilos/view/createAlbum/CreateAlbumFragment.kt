@@ -38,7 +38,8 @@ class CreateAlbumFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Crear album"
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.crear_album_appbar)
         return inflater.inflate(R.layout.fragment_create_album, container, false)
     }
 

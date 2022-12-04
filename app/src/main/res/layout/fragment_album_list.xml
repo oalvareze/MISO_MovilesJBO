@@ -8,26 +8,35 @@
 
     <Button
         android:id="@+id/btnColeccionista"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:text="Coleccionistas"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/colleccionistas_appbar"
+        android:drawableLeft="@drawable/collectors_icon"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline16"
-        app:layout_constraintStart_toStartOf="@+id/guideline15" />
+        app:layout_constraintEnd_toStartOf="@+id/albumFloatingActionButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/goArtist"
+        app:layout_constraintTop_toBottomOf="@+id/albumListRV"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Spinner
         android:id="@+id/genresSpinner"
-        android:layout_width="135dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="28dp"
-        android:contentDescription="Filtrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:contentDescription="@string/filtrar"
+        android:minHeight="48dp"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline16"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline15"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -35,16 +44,19 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
-
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="80dp"
         android:clipToPadding="false"
+        android:contentDescription="@string/album_rv_desc"
         android:padding="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genresSpinner"
+
+        app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/album_list_item" />
 
     <ProgressBar
@@ -61,12 +73,13 @@
         android:id="@+id/albumFloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+
         android:clickable="true"
 
         android:contentDescription="@string/next"
 
         android:src="@android:drawable/ic_menu_add"
-
         app:backgroundTint="#6200EE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,19 +89,6 @@
         app:layout_constraintVertical_bias="0.976"
         app:rippleColor="@color/teal_200"
         app:tint="#FFFFFF" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="88dp"
-        android:clickable="true"
-        android:src="@android:drawable/btn_star_big_on"
-        android:visibility="gone"
-        app:backgroundTint="#673AB7"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline15"
@@ -110,5 +110,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.92612857" />
+
+    <Button
+        android:id="@+id/goArtist"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/artistas_appbar"
+        android:drawableLeft="@drawable/artist_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/albumListRV"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

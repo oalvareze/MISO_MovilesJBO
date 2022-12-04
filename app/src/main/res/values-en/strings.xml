@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vinyls</string>
+    <string-array name="generos_musicales">
+        <item>Genre</item>
+        <item>Rock</item>
+        <item>Classical</item>
+        <item>Salsa</item>
+        <item>Folk</item>
+    </string-array>
+
+    <string name="asociar_album">Associate album</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="next">Next</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tracks">Tracks</string>
+    <string name="descripcion_splash">Application logo</string>
+    <string name="descripcion_performer">Artist Image</string>
+    <string name="descripcion_crear_album">Illustration of someone listening to music</string>
+    <string name="descripcion_track">Music note illustration</string>
+    <string name="descripcion_album_cover">Album Image</string>
+    <string name="filtrar">Filter</string>
+    <string name="comentarios">Comments</string>
+    <string name="artista">Artist</string>
+    <string name="titulo">Title</string>
+    <string name="artistas_favorito">Favorite artist</string>
+    <string name="albums">Albums</string>
+    <string name="buscador">Search</string>
+    <string name="nombre">Name</string>
+    <string name="portada">Front page</string>
+    <string name="descripcion">Description</string>
+    <string name="crear">Create</string>
+    <string name="detalle_appbar">Details</string>
+    <string name="colleccionistas_appbar">Collectors</string>
+    <string name="crear_album_appbar">Create album</string>
+    <string name="asociar_album_appbar">Asociate album</string>
+    <string name="yyyy_mm_dd">YYYY-MM-DD</string>
+    <string name="agregar_album">Add album</string>
+    <string name="este_album_no_tiene_traks_asociados">This album has no associated tracks</string>
+    <string name="vinilo_music">Vinyls Music</string>
+    <string name="detalles">Details</string>
+    <string name="artistas_appbar">Artists</string>
+    <string name="descripcion_comentario_album">Description</string>
+    <string name="message_no_album">This album has no comments</string>
+    <string name="message_artist_album">Associate an album with an artist</string>
+    <string name="collecionista_rv_desc">Collectors list</string>
+    <string name="album_rv_desc">Albums List</string>
+    <string name="track_rv_list">Tracks list</string>
+    <string name="artist_rv_list">Artists list</string>
+
+    <string name="agregar">Add</string>
+    <string name="add_album_to_artist">Add</string>
+
+</resources>

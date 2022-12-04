@@ -31,7 +31,7 @@ import com.example.vinilos.viewmodel.CollectorListViewModel
 
 
 
-class CollectorListFragment : Fragment() {
+class   CollectorListFragment : Fragment() {
 
 
     private var _binding: FragmentCollectorListBinding? = null
@@ -48,7 +48,8 @@ class CollectorListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Coleccionistas"
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title=getString(R.string.colleccionistas_appbar)
         _binding = FragmentCollectorListBinding.inflate(inflater, container, false)
         val view = binding.root
         val navController = findNavController()

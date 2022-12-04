@@ -21,7 +21,8 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/trackimage" />
+            app:srcCompat="@drawable/trackimage"
+            android:contentDescription="@string/descripcion_track" />
 
         <TextView
             android:id="@+id/textView6"

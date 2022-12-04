@@ -17,12 +17,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.vinilos.R
 import com.example.vinilos.databinding.AlbumListItemBinding
 import com.example.vinilos.model.Album
+import com.example.vinilos.model.AlbumCreate
 
 class AlbumListAdapter(private val navController: NavController,val navDirections: AlbumListFragmentDirections.Companion): RecyclerView.Adapter<AlbumListAdapter.AlbumListViewHolder>()  {
 
 
 
-    var albums :List<Album> = emptyList()
+    var albums :List<AlbumCreate> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -38,7 +39,7 @@ class AlbumListAdapter(private val navController: NavController,val navDirection
         val holder=AlbumListViewHolder(withDataBinding)
 
         holder.itemView.setOnClickListener(View.OnClickListener() {
-                this.navController.navigate(navDirections.actionAlbumListFragmentToAlbumDetail(albums[holder.adapterPosition].albumId))
+                this.navController.navigate(navDirections.actionAlbumListFragmentToAlbumDetail(albums[holder.adapterPosition].id))
 
             })
         return holder

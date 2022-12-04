@@ -6,7 +6,7 @@
     <data>
             <variable
                 name="album"
-                type="com.example.vinilos.model.Album" />
+                type="com.example.vinilos.model.AlbumCreate" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/descripcion_album_cover" />
 
         <TextView
             android:id="@+id/textView4"
