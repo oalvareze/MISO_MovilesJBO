@@ -3,6 +3,7 @@ package com.example.vinilos.repostories
 import android.app.Application
 import android.util.Log
 import com.example.vinilos.model.Album
+import com.example.vinilos.model.AlbumCreate
 //import com.example.vinilos.model.AlbumCreate
 import com.example.vinilos.model.Comentario
 import com.example.vinilos.model.Track
@@ -16,29 +17,27 @@ import kotlin.coroutines.suspendCoroutine
 
 class AlbumRepository(private val application: Application) {
 
-    init {
-        print("Inicia el consumo AlbumRepository")
-    }
 
-    suspend fun getAlbums() = suspendCoroutine<List<Album>> { cont ->
+
+
+    suspend fun getAlbums() = suspendCoroutine<List<AlbumCreate>> { cont ->
         val albumService = AlbumService.getInstance(application)
         albumService.instance.add(albumService.getAlbumsRequest("albums", {
-            val list = mutableListOf<Album>()
+            val list = mutableListOf<AlbumCreate>()
             for (i in 0 until it.length()) {
 
 
                 list.add(
-                    Album(
+                    AlbumCreate(
                         Integer.parseInt(it.getJSONObject(i).get("id").toString()),
                         it.getJSONObject(i).get("name").toString(),
                         it.getJSONObject(i).get("cover").toString(),
-                        "a,",
-                        "a",
+                        it.getJSONObject(i).get("releaseDate").toString(),
+                        it.getJSONObject(i).get("description").toString(),
                         it.getJSONObject(i).get("genre").toString(),
-                        "uno",
-                        emptyList(),
-                        emptyList(),
-                        "Artista"
+                        it.getJSONObject(i).get("recordLabel").toString(),
+
+
                     )
                 )
             }

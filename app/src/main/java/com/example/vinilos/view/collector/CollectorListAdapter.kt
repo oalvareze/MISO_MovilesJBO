@@ -1,10 +1,8 @@
 package com.example.vinilos.view.collector
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -14,10 +12,12 @@ import com.example.vinilos.databinding.CollectorListItemBinding
 import com.example.vinilos.model.Collector
 
 
-class CollectorListAdapter(private val navController: NavController,
-                           val navDirections: CollectorListFragmentDirections.Companion): RecyclerView.Adapter<CollectorListAdapter.CollectionListViewHolder>()  {
+class CollectorListAdapter(
+    private val navController: NavController,
+    val navDirections: CollectorListFragmentDirections.Companion
+) : RecyclerView.Adapter<CollectorListAdapter.CollectionListViewHolder>() {
 
-    var collectors :List<Collector> = emptyList()
+    var collectors: List<Collector> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -28,36 +28,35 @@ class CollectorListAdapter(private val navController: NavController,
             LayoutInflater.from(parent.context),
             CollectionListViewHolder.LAYOUT,
             parent,
-            false)
-        Log.d("createView", "llego")
+            false
+        )
+        val holder = CollectionListViewHolder(withDataBinding)
 
-        val holder=CollectionListViewHolder(withDataBinding)
-
-   holder.itemView.setOnClickListener(View.OnClickListener() {
-             this.navController.navigate(navDirections.actionCollectorListFragmentToCollectorDetailFragment(collectors[holder.adapterPosition].id))
-    })
+        holder.itemView.setOnClickListener(View.OnClickListener() {
+            this.navController.navigate(
+                navDirections.actionCollectorListFragmentToCollectorDetailFragment(
+                    collectors[holder.adapterPosition].id
+                )
+            )
+        })
         return holder
     }
 
-    class CollectionListViewHolder(val viewDataBinding:CollectorListItemBinding):
-        RecyclerView.ViewHolder(viewDataBinding.root){
-    companion object{
-        @LayoutRes
-        val LAYOUT=R.layout.collector_list_item
-    }}
+    class CollectionListViewHolder(val viewDataBinding: CollectorListItemBinding) :
+        RecyclerView.ViewHolder(viewDataBinding.root) {
+        companion object {
+            @LayoutRes
+            val LAYOUT = R.layout.collector_list_item
+        }
+    }
 
     override fun onBindViewHolder(holder: CollectionListViewHolder, position: Int) {
-        Log.d("onBind", "llego")
         holder.viewDataBinding.also {
             it.collector = collectors[position]
         }
-
-
-
     }
 
     override fun getItemCount(): Int {
-        Log.d("cantidad","cantidad"+collectors.size)
         return collectors.size
     }
 

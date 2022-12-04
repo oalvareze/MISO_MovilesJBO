@@ -7,3 +7,11 @@ data class Artist(
     val description: String,
     val birthDate: String
 )
+@kotlinx.serialization.Serializable
+data class ArtistDetail(
+    val id: Int,
+    val name: String,
+    val image: String,
+    val description: String,
+    val birthDate: String,val albums:List<AlbumCreate>
+)

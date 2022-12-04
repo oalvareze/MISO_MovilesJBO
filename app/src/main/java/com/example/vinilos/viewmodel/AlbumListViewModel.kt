@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.vinilos.model.Album
+import com.example.vinilos.model.AlbumCreate
 import com.example.vinilos.repostories.AlbumRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,10 +13,10 @@ import kotlinx.coroutines.withContext
 class AlbumListViewModel(application: Application, var albumRepository: AlbumRepository) :
     AndroidViewModel(application) {
 
-    private val _albums = MutableLiveData<List<Album>>();
+    private val _albums = MutableLiveData<List<AlbumCreate>>();
 
-    private val _albumsFiltered = MutableLiveData<List<Album>>();
-    val albumsFiltered: LiveData<List<Album>> get() = _albumsFiltered;
+    private val _albumsFiltered = MutableLiveData<List<AlbumCreate>>();
+    val albumsFiltered: LiveData<List<AlbumCreate>> get() = _albumsFiltered;
     private val _genres = MutableLiveData<List<String>>()
 
 
@@ -32,10 +33,14 @@ class AlbumListViewModel(application: Application, var albumRepository: AlbumRep
         try {
             viewModelScope.launch(Dispatchers.Default){
                 withContext(Dispatchers.IO){
-                    var data = albumRepository.getAlbums()
+                  try{
+                   var data = albumRepository.getAlbums()
                     _albumsFiltered.postValue(data)
                     _albums.postValue(data)
-                    loading.postValue(false)
+                    loading.postValue(false)}
+                    catch (e:Exception){
+                  Log.d("Entro",e.toString())
+                    }
                 }
             }
 
@@ -46,14 +51,14 @@ class AlbumListViewModel(application: Application, var albumRepository: AlbumRep
     }
 
     fun getAlbumFiltered(genre: String) {
-        if(albumsFiltered!=null){
+        if(albumsFiltered.value!=null){
 
-        if (genre == "Generos") {
+        if (genre == "Generos" || genre == "Genre") {
             if (_albums.value != null) {
                 _albumsFiltered.postValue(_albums.value)
             }
         } else {
-            var filterAlbums = mutableListOf<Album>()
+            var filterAlbums = mutableListOf<AlbumCreate>()
             for (album in _albums.value!!) {
                 if (genre == album.genre) {
                     filterAlbums.add(album)

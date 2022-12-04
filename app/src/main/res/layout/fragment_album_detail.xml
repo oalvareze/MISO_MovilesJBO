@@ -16,7 +16,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        android:contentDescription="@string/descripcion_album_cover" />
 
     <TextView
         android:id="@+id/textView5"
@@ -35,7 +36,7 @@
         android:layout_height="34dp"
         android:layout_marginTop="24dp"
         android:gravity="center|center_horizontal"
-        android:text="Titulo"
+        android:text="@string/titulo"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
@@ -48,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Artista"
+        android:text="@string/artista"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/albumDetailCover"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="20dp"
-        android:text="TextView"
+
         android:textColor="#FAF9F9"
         app:layout_constraintBottom_toBottomOf="@+id/albumDetailCover"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -80,14 +81,14 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tracks"
+            android:text="@string/tracks"
             tools:layout_editor_absoluteX="5dp"
             tools:layout_editor_absoluteY="502dp" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Comentarios"
+            android:text="@string/comentarios"
             tools:layout_editor_absoluteX="200dp"
             tools:layout_editor_absoluteY="142dp" />
     </com.google.android.material.tabs.TabLayout>
@@ -105,7 +106,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-        app:layout_constraintVertical_bias="0.074"></androidx.viewpager2.widget.ViewPager2>
+        app:layout_constraintVertical_bias="0.074" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier2"
