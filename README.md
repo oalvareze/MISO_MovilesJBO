@@ -16,5 +16,6 @@ Para visualizar o trabajar en la aplicación podrá:
     5. Importe el proyecto en Android Studio.
     6. Asegúrese de construir el proyecto, es decir, que todas las dependencias llamadas en el archivo `build.gradle` se encuentren descargadas.
     7. Para ejecutar la aplicación solo bastará con ir a la clase `SplashActivity`, clic derecho y clic en Run.
+ - _Nota: Para cambiar el idioma de la aplicacion de ingles o español debe cambiar el idioma del dispositivo_
 
 
