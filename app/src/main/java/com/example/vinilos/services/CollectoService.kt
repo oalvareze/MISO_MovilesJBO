@@ -16,7 +16,7 @@ class CollectoService constructor(context: Context) {
     var instance: RequestQueue = Volley.newRequestQueue(context.applicationContext)
 
     companion object {
-        const val BASE_URL = "http://104.155.128.71:3000/collectors"
+        const val BASE_URL = "http://34.72.118.202:3000/collectors"
         var instance: CollectoService? = null
         fun getInstance(context: Context) = instance ?: synchronized(this) {
             instance ?: CollectoService(context).also {

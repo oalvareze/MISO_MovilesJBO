@@ -16,7 +16,7 @@ class AlbumService constructor(context: Context) {
     var instance: RequestQueue = Volley.newRequestQueue(context.applicationContext)
 
     companion object {
-        const val BASE_URL = "http://104.155.128.71:3000/"
+                const val BASE_URL = "http://34.72.118.202:3000/"
         var instance: AlbumService? = null
         fun getInstance(context: Context) = instance ?: synchronized(this) {
             instance ?: AlbumService(context).also {
