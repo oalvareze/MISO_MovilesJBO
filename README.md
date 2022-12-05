@@ -1,5 +1,5 @@
 # Vinilos App
-**Nota: Se tuvo que realizar un commit despues de la fecha de entrega debido a que se acabaron los creditos en la cuenta de gcp que se uso para realizar el depligue del backend y al realizarl nuevamente direccion de la api cambio**
+**Nota: Se tuvo que realizar un commit despues de la fecha de entrega debido a que se acabaron los creditos en la cuenta de gcp que se uso para realizar el depligue del backend y al realizarlo nuevamente la direccion de la api cambio**
 <br>
 Vinilos es una aplicación desarrollada en dos frentes, por un lado tenemos la parte front, construida en Android nativo, por otro lado el backend de la aplicación está desarrollado en Nest.js y desplegada en Heroku.
 
